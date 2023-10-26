@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class BuildCard {
+public class BuildCard { //
 	public static void main(String[] args) {
 		System.out.println("FRICK YES");
 	}
