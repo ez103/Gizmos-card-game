@@ -12,5 +12,25 @@ public class Card {
 	private int x, y; // location of the card. used for convenience when painting and stuff.
 	private boolean usedThisRound; // has the card actions been used up already this round??
 	
+	public Card(int cost, String costColor, int cardVictoryPoints, int tier, String category, BufferedImage image) {
+		usedThisRound = false;
+		this.cost = cost;
+		this.costColor = costColor;
+		this.cardVictoryPoints = cardVictoryPoints;
+		this.tier = tier;
+		this.category = category;
+		this.image = image;
+	}
 	
+	public void setLocation(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+	
+	public int getX() {
+		return x;
+	}
+	public int getY() {
+		return y;
+	}
 }
