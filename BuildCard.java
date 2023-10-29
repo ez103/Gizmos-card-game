@@ -8,6 +8,6 @@ public class BuildCard extends Card {
 	}
 
 	public static void main(String[] args) {
-		System.out.println("FUCK YES");
+		System.out.println(" YES");
 	}
 }
