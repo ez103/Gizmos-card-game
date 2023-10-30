@@ -35,4 +35,35 @@ public class Card {
 	public int getY() {
 		return y;
 	}
+	
+	public void use() {
+		usedThisRound = true;;
+	}
+	
+	public void newRound() {
+		usedThisRound = false;
+	}
+	
+	public boolean isUsed() {
+		return usedThisRound;
+	}
+	
+	public int getCost() {
+		return cost;
+	}
+	public String getCostColor() {
+		return costColor;
+	}
+	public int getCardVictoryPoints() {
+		return cardVictoryPoints;
+	}
+	public int getTier() {
+		return tier;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public BufferedImage getImage() {
+		return image;
+	}
 }
