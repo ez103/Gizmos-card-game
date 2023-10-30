@@ -20,6 +20,8 @@ public class Card {
 		this.tier = tier;
 		this.category = category;
 		this.image = image;
+		x = 0;
+		y = 0;
 	}
 	
 	public void setLocation(int x, int y) {
