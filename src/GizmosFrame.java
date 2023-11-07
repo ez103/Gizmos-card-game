@@ -18,6 +18,6 @@ public class GizmosFrame extends JFrame {
 		setVisible(true);
 	}
 }
-
+	
 
 
