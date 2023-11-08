@@ -1,7 +1,7 @@
 import java.util.*;
 import java.awt.image.*;
 import java.awt.*;
-
+//hi eric
 public class Card {
 	private int cost; // this is the cost to build the card -Eric
 	private String costColor; // this is the color of the marble used to build this card 
