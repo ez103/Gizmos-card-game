@@ -1,3 +1,11 @@
+import javax.swing.*;
+import javax.imageio.*;
+import java.awt.*;
+import java.awt.image.*;
+import java.awt.event.*;
+import java.io.*;
+import java.util.*;
+import java.util.List;
 
 public class Marble {
     private String color;
@@ -6,7 +14,15 @@ public class Marble {
     private int y;
 
     public Marble(String color) {
-        if (color = "g")
+        try {
+            if (color.equals("r")) { // r for red
+                marbleImage = ImageIO.read(Marble.class.getResource("/images/redMarble.png"));
+            }
+            else if (color.equals(""))
+        }
+        catch (Exception e) {
+
+        }
     }
 
     public void setLocation(int x, int y) {
