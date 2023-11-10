@@ -46,7 +46,9 @@ public class Player {
 		this.y = y;
 	}
 
-	
+	public BufferedImage getImage() {
+		return belt;
+	}
 
 	public int getX() {
 		return x;

@@ -55,6 +55,6 @@ public class Marble {
         return color;
     }
     private BufferedImage getImage() {
-        return image;
+        return marbleImage;
     }
 }
