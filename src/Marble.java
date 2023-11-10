@@ -14,14 +14,26 @@ public class Marble {
     private int y;
 
     public Marble(String color) {
+        this.color = color;
         try {
-            if (color.equals("r")) { // r for red
+            if (color.equals("red")) { 
                 marbleImage = ImageIO.read(Marble.class.getResource("/images/redMarble.png"));
             }
-            else if (color.equals(""))
+            else if (color.equals("yellow")) { 
+                marbleImage = ImageIO.read(Marble.class.getResource("/images/yellowMarble.png"));
+            }
+            else if (color.equals("blue")) {
+                marbleImage = ImageIO.read(Marble.class.getResource("/images/blueMarble"));
+            }
+            else if (color.equals("black")) {
+                marbleImage = ImageIO.read(Marble.class.getResource("/images/blackMarble"));
+            }
+            else {
+                System.out.println("NOT corrct color");
+            }
         }
         catch (Exception e) {
-
+            System.out.println("marble images exception");
         }
     }
 
