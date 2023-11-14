@@ -8,6 +8,10 @@ public class ConverterCard extends Card {
 		super(cost, costColor, cardVictoryPoints, tier, category, image);
 		// TODO Auto-generated constructor stub
 	}
+
+	public ConverterCard(String s, BufferedImage image) {
+		super(s, image);
+	}
 	
 	public void setConverterA(String startColor, boolean performOnTwo) {
 		this.doubleIt = false;
