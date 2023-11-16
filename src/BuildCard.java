@@ -5,4 +5,8 @@ public class BuildCard extends Card {
 		super(cost, costColor, cardVictoryPoints, tier, category, image);
 		
 	}
+
+	public BuildCard(String s, BufferedImage image) {
+		super(s, image);
+	}
 }

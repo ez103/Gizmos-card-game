@@ -11,7 +11,7 @@ public class ConverterCard extends Card {
 
 	public ConverterCard(String s, BufferedImage image) {
 		super(s, image);
-	}
+	} 
 	
 	public void setConverterA(String startColor, boolean performOnTwo) {
 		this.doubleIt = false;

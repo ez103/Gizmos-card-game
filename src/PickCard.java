@@ -6,6 +6,10 @@ public class PickCard extends Card {
         super(cost, costColor, cardVictoryPoints, tier, category, image);
 	}
 
+    public PickCard(String s, BufferedImage image) {
+		super(s, image);
+	}
+
     public setPickCard(ArrayList<String> pickedColors) {
         this.pickedColors = pickedColors;
     }

@@ -8,6 +8,10 @@ public class FileCard extends Card {
         super(cost, costColor, cardVictoryPoints, tier, category, image);
 	}
 
+    public FileCard(String s, BufferedImage image) {
+		super(s, image);
+	}
+
     public void setFileCard(int chooseMarble, int randomMarble, int playerVictoryPoints) {
         this.chooseMarble = chooseMarble;
         this.randomMarble = randomMarble;

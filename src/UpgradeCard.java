@@ -18,4 +18,8 @@ public class UpgradeCard extends Card {
     public UpgradeCard(int cost, String costColor, int cardVictoryPoints, int tier, String category, BufferedImage image) {
         super(cost, costColor, cardVictoryPoints, tier, category, image);
 	}
+
+    public UpgradeCard(String s, BufferedImage image) {
+		super(s, image);
+	}
 }
