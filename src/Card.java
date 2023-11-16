@@ -33,16 +33,16 @@ public class Card {
 
 		char color = s.charAt(1);
 		if (color == 'r') {
-			this.color = "red";
+			this.costColor = "red";
 		}
 		else if (color == 'y') {
-			this.color = "yellow";
+			this.costColor = "yellow";
 		}
 		else if (color == 'u') { // this is blue
-			this.color = "blue";
+			this.costColor = "blue";
 		}
 		else { // 'a' - this is black
-			this.color = "black";
+			this.costColor = "black";
 		}
 
 		this.cardVictoryPoints = Integer.parseInt(s.substring(2, 3));

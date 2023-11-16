@@ -1,3 +1,5 @@
+import java.awt.image.BufferedImage;
+import java.util.*;
 
 public class PickCard extends Card {
     private ArrayList<String> pickedColors;
@@ -10,7 +12,7 @@ public class PickCard extends Card {
 		super(s, image);
 	}
 
-    public setPickCard(ArrayList<String> pickedColors) {
+    public void setPickCard(ArrayList<String> pickedColors) {
         this.pickedColors = pickedColors;
     }
 }

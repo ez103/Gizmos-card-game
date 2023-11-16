@@ -21,10 +21,12 @@ public class Player {
 	private int y;
 
 	public int getTotalVictoryPoints() { 
-		ArrayList<Integer> list = belt.values();
+		Collection<ArrayList<Card>> list = belt.values();
 		int sum = 0;
-		for (Card c : list) {
-			sum += c.getCardVictoryPoints();
+		for (ArrayList<Card> arr : list) {
+			for (Card c : arr) {
+				sum += c.getCardVictoryPoints();
+			}
 		}
 		sum += playerVictoryPoints;
 
@@ -47,7 +49,7 @@ public class Player {
 	}
 
 	public BufferedImage getImage() {
-		return belt;
+		return beltImage;
 	}
 
 	public int getX() {

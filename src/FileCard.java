@@ -1,3 +1,4 @@
+import java.awt.image.BufferedImage;
 
 public class FileCard extends Card {
     private int chooseMarble; // how many of the 6 visible marbles you can pick
