@@ -2,10 +2,10 @@ import java.awt.image.BufferedImage;
 import java.util.*;
 
 public class PickCard extends Card {
-    private ArrayList<String> pickedColors;
+    private ArrayList<String> pickedColors; // if these colors are picked, the player is able to draw an additional random marble
 
-    public PickCard(i
-        super(cost, costColor, cardVictoryPoints, tier, category, image);nt cost, String costColor, int cardVictoryPoints, int tier, String category, BufferedImage image) {
+    public PickCard(int cost, String costColor, int cardVictoryPoints, int tier, String category, BufferedImage image) {
+        super(cost, costColor, cardVictoryPoints, tier, category, image);
 	}
 
     public PickCard(String s, BufferedImage image) {
@@ -14,5 +14,9 @@ public class PickCard extends Card {
 
     public void setPickCard(ArrayList<String> pickedColors) {
         this.pickedColors = pickedColors;
+    }
+
+    public void addPickedColor(String color) { 
+        pickedColors.add(color);
     }
 }

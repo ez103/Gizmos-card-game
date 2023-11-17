@@ -92,10 +92,12 @@ public class Deck {
     // : [cost][lowercase first letter of color][cardVP][tier][category: lowercase first letter]
     
 			PickCard r1p2_1 = new PickCard("1a11p");
-            
+            r1p2_1.setPickCard(new ArrayList<>());
+            r1p2_1.addPickedColor("blue");
 
 			PickCard r1p2_2 = new PickCard("1u11p", ImageIO.read(Deck.class.getResource("cardImages/r1p2_2.p")));
-
+			r1p2_2.setPickCard(new ArrayList<>());
+			r1p2_2.addPickedColor("red");
 			
 		}
     	catch (Exception E) {
