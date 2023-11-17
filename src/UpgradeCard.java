@@ -23,4 +23,41 @@ public class UpgradeCard extends Card {
     public UpgradeCard(String s, BufferedImage image) {
 		super(s, image);
 	}
+    
+    public void setUpgradeCard(int mLimit, int fLimit, int rLimit, String negator, String discount, String extraVp) {
+    	this.marbleLimitIncrease = mLimit;
+    	this.fileLimitIncrease = fLimit;
+    	this.researchLimitIncrease = rLimit;
+    	
+    	negateFile = false;
+    	negateResearch = false;
+    	if (negator.equals("f")) {
+    		negateFile = true;
+    	}
+    	else if (negator.equals("r")) {
+    		negateFile = true;
+    	}
+    	
+    	tierTwoDiscount = 0;
+    	buildFromFileDiscount = 0;
+    	buildFromResearchDiscount = 0;
+    	if (discount.equals("t")) {
+    		tierTwoDiscount = 1;
+    	}
+    	else if (discount.equals("f")) {
+    		buildFromFileDiscount = 1;
+    	}
+    	else if (discount.equals("r")) {
+    		buildFromResearchDiscount = 1;
+    	}
+    	
+    	isVpMarbles = false;
+    	isVpPlayerVp = false;
+    	if (extraVp.equals("m")) {
+    		isVpMarbles = true;
+    	}
+    	else if (extraVp.equals("p")) {
+    		isVpPlayerVp = true;
+    	}
+    }
 }

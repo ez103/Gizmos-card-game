@@ -108,4 +108,5 @@ public class Card {
 	public BufferedImage getImage() {
 		return image;
 	}
+
 }

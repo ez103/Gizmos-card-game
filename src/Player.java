@@ -19,6 +19,15 @@ public class Player {
 	private int researchLimit;
 	private int x;
 	private int y;
+	
+	private boolean canFile = true, canResearch = true; // if player is allowed to do these actions or not - they can be negated by certain cards.
+	
+	public void negateFile() {
+		canFile = false;
+	}
+	public void negateResearch() {
+		canResearch = false;
+	}
 
 	public int getTotalVictoryPoints() { 
 		Collection<ArrayList<Card>> list = belt.values();

@@ -42,4 +42,8 @@ public class BuildCard extends Card {
 			this.doBuild = true;
 		}
 	}
+	
+	public void addBuiltColor(String color) {
+		builtColors.add(color);
+	}
 }
