@@ -75,14 +75,14 @@ public class Deck {
             cards.add(r1p1_10);
 
 
-			BuildCard r1p1_11 = new BuildCard("1r11b", ImageIO.read(Deck.class.getResources("/cardImages/r1p1_11.png")));
+			BuildCard r1p1_11 = new BuildCard("1r11b", ImageIO.read(Deck.class.getResource("/cardImages/r1p1_11.png")));
 			r1p1_11.setBuildCard(new ArrayList<String>(),false, 0,1,0,"");
 			r1p1_11.addBuiltColor("yellow");
 			cards.add(r1p1_11);
 
 			BuildCard r1p1_12 = new BuildCard("1y11b", ImageIO.read(Deck.class.getResource("/cardImages/r1p1_12.png")));
 			r1p1_12.setBuildCard(new ArrayList<String>(),false,0,1,0,"");
-			r1p1_12.setBuiltColor("blue");
+			r1p1_12.addBuiltColor("blue");
 			cards.add(r1p1_12);
 
             // public void setPickCard(ArrayList<String> pickedColors)
@@ -116,10 +116,49 @@ public class Deck {
 			r1p2_5.addPickedColor("yellow");
 			cards.add(r1p2_5);
 			
+			PickCard r1p2_6 = new PickCard("1u11p", ImageIO.read(Deck.class.getResource("/cardImages/r1p2_6.png")));
+			r1p2_6.setPickCard(new ArrayList<>());
+			r1p2_6.addPickedColor("black");
+			cards.add(r1p2_6);
+			
+			PickCard r1p2_7 = new PickCard("1y11p", ImageIO.read(Deck.class.getResource("/cardImages/r1p2_7.png")));
+			r1p2_7.setPickCard(new ArrayList<>());
+			r1p2_7.addPickedColor("red");
+			cards.add(r1p2_7);
+			
+			PickCard r1p2_8 = new PickCard("1r11p", ImageIO.read(Deck.class.getResource("/cardImages/r1p2_8.png")));
+			r1p2_8.setPickCard(new ArrayList<>());
+			r1p2_8.addPickedColor("yellow");
+			cards.add(r1p2_8);
 		}
     	catch (Exception E) {
-    		System.out.println("image exception CARDS DECK rank 1");
+    		System.out.println("image exception CARDS DECK rank 1 - file, build, pick cards");
     	}
         
+    	
+    	try {
+    		// CONVERTER FORMAT 
+    		// type a converter is the "normal" converter; from a given color to another color. performed on 1 or 2 only.
+    		// type b converter is the converter where given color of marble can all be doubled.
+    		
+    		// TYPE A converter : public void setConverterA(String startColor, boolean performOnTwo) 
+    		// TYPE B converter : public void setConverterB(String startColor) {
+    		
+    		// public void Card(String s, BufferedImage image)
+    	    // parameter s must be in this format
+    	    // : [cost][lowercase first letter of color][cardVP][tier][category: lowercase first letter]
+    		
+    		ConverterCard r1p2_9 = new ConverterCard("1a11c", ImageIO.read(Deck.class.getResource("/cardImages/r1p2_9.png")));
+    		r1p2_9.setConverterA("yellow", false);
+    		cards.add(r1p2_9);
+    		
+    		ConverterCard r1p2_10 = new ConverterCard("3u31c", ImageIO.read(Deck.class.getResource("/cardImages/r1p2_10.png")));
+    		r1p2_10.setConverterB("red");
+    		cards.add(r1p2_10);
+    		
+    	}
+    	catch (Exception E) {
+    		System.out.println("image exception CARDS deck rank 1 - ");
+    	}
     }
 }

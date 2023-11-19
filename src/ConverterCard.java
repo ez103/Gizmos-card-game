@@ -19,7 +19,8 @@ public class ConverterCard extends Card {
 		this.performOnTwo = performOnTwo;
 	}
 	
-	public void setConverterB(boolean doubleIt) {
+	public void setConverterB(String startColor) {
+		this.startColor = startColor;
 		this.doubleIt = true;
 	}
 	
