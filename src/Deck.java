@@ -62,25 +62,25 @@ public class Deck {
 			r1p1_8.addBuiltColor("red");
             cards.add(r1p1_8);
 			
-			BuildCard r1p1_9 = new BuildCard("1a11b", ImageIO.read(Deck.class.getResource("cardImages/r1p1_9.png")));
+			BuildCard r1p1_9 = new BuildCard("1a11b", ImageIO.read(Deck.class.getResource("/cardImages/r1p1_9.png")));
 			r1p1_9.setBuildCard(new ArrayList<String>(), false,0,1,0,"");
 			r1p1_9.addBuiltColor("red");
 			cards.add(r1p1_9);
             
 
 			
-            BuildCard r1p1_10 = new BuildCard("1u11b", ImageIO.read(Deck.class.getResource("cardImages/r1p1_10.png")));
+            BuildCard r1p1_10 = new BuildCard("1u11b", ImageIO.read(Deck.class.getResource("/cardImages/r1p1_10.png")));
             r1p1_10.setBuildCard(new ArrayList<String>(), false, 0, 1, 0, "");
             r1p1_10.addBuiltColor("black");
             cards.add(r1p1_10);
 
 
-			BuildCard r1p1_11 = new BuildCard("1r11b", ImageIO.read(Deck.class.getResources("cardImages/r1p1_11.png")));
+			BuildCard r1p1_11 = new BuildCard("1r11b", ImageIO.read(Deck.class.getResources("/cardImages/r1p1_11.png")));
 			r1p1_11.setBuildCard(new ArrayList<String>(),false, 0,1,0,"");
 			r1p1_11.addBuiltColor("yellow");
 			cards.add(r1p1_11);
 
-			BuildCard r1p1_12 = new BuildCard("1y11b", ImageIO.read(Deck.class.getResource("cardImages/r1p1_12.png")));
+			BuildCard r1p1_12 = new BuildCard("1y11b", ImageIO.read(Deck.class.getResource("/cardImages/r1p1_12.png")));
 			r1p1_12.setBuildCard(new ArrayList<String>(),false,0,1,0,"");
 			r1p1_12.setBuiltColor("blue");
 			cards.add(r1p1_12);
@@ -91,13 +91,30 @@ public class Deck {
     // parameter s must be in this format
     // : [cost][lowercase first letter of color][cardVP][tier][category: lowercase first letter]
     
-			PickCard r1p2_1 = new PickCard("1a11p");
+			PickCard r1p2_1 = new PickCard("1a11p", ImageIO.read(Deck.class.getResource("/cardImages/r1p2_1.png")));
             r1p2_1.setPickCard(new ArrayList<>());
             r1p2_1.addPickedColor("blue");
+			cards.add(r1p2_1);
 
-			PickCard r1p2_2 = new PickCard("1u11p", ImageIO.read(Deck.class.getResource("cardImages/r1p2_2.p")));
+			PickCard r1p2_2 = new PickCard("1u11p", ImageIO.read(Deck.class.getResource("/cardImages/r1p2_2.png")));
 			r1p2_2.setPickCard(new ArrayList<>());
 			r1p2_2.addPickedColor("red");
+			cards.add(r1p2_2);
+
+			PickCard r1p2_3 = new PickCard("1y11p", ImageIO.read(Deck.class.getResource("/cardImages/r1p2_3.png")));
+			r1p2_3.setPickCard(new ArrayList<>());
+			r1p2_3.addPickedColor("black");
+			cards.add(r1p2_3);
+			
+			PickCard r1p2_4 = new PickCard("1r11p", ImageIO.read(Deck.class.getResource("/cardImages/r1p2_4.png")));
+			r1p2_4.setPickCard(new ArrayList<>());
+			r1p2_4.addPickedColor("blue");
+			cards.add(r1p2_4);
+
+			PickCard r1p2_5 = new PickCard("1a11p", ImageIO.read(Deck.class.getResource("/cardImages/r1p2_5.png")));
+			r1p2_5.setPickCard(new ArrayList<>());
+			r1p2_5.addPickedColor("yellow");
+			cards.add(r1p2_5);
 			
 		}
     	catch (Exception E) {
