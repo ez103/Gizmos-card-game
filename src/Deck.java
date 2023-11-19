@@ -401,6 +401,54 @@ public class Deck {
 			r2p2_8.addBuiltColor("black");
 			cards.add(r2p2_8);
 
+			BuildCard r2p2_9 = new BuildCard("2a22b", ImageIO.read(Deck.class.getResource("/cardImages/r2p2_9.png")));
+			r2p2_9.setBuildCard(ArrayList<String>(),false,0,0,1,"");
+			r2p2_9.addBuiltColor("red");
+			r2p2_9.addBuiltColor("blue");
+			cards.add(r2p2_9);
+
+				BuildCard r2p2_10 = new BuildCard("2u22b", ImageIO.read(Deck.class.getResource("/cardImages/r2p2_10.png")));
+			r2p2_10.setBuildCard(ArrayList<String>(),false,0,0,1,"");
+			r2p2_9.addBuiltColor("red");
+			r2p2_9.addBuiltColor("yellow");
+			cards.add(r2p2_10);
+
+			BuildCard r2p2_11 = new BuildCard("2y22b", ImageIO.read(Deck.class.getResource("/cardImages/r2p2_11.png")));
+			r2p2_10.setBuildCard(ArrayList<String>(),false,0,0,1,"");
+			r2p2_9.addBuiltColor("red");
+			r2p2_9.addBuiltColor("black");
+			cards.add(r2p2_11);
+
+			BuildCard r2p2_12 = new BuildCard("2r22b", ImageIO.read(Deck.class.getResource("/cardImages/r2p2_12.png")));
+			r2p2_12.setBuildCard(ArrayList<String>(),false,0,0,1,"");
+			r2p2_12.addBuiltColor("blue");
+			r2p2_12.addBuiltColor("yellow");
+			cards.add(r2p2_12);
+
+			BuildCard r2p2_13 = new BuildCard("3a22b", ImageIO.read(Deck.class.getResource("/cardImages/r2p2_13.png")));
+			r2p2_13.setBuildCard(ArrayList<String>(),false,0,1,0,"");
+			r2p2_13.addBuiltColor("blue");
+			r2p2_13.addBuiltColor("yellow");
+			cards.add(r2p2_13);
+
+			BuildCard r2p2_14 = new BuildCard("3u32b", ImageIO.read(Deck.class.getResource("/cardImages/r2p2_14.png")));
+			r2p2_14.setBuildCard(ArrayList<String>(),false,0,1,0,"");
+			r2p2_14.addBuiltColor("black");
+			r2p2_14.addBuiltColor("red");
+			cards.add(r2p2_14);
+
+			BuildCard r2p2_15 = new BuildCard("3y32b", ImageIO.read(Deck.class.getResource("/cardImages/r2p2_15.png")));
+			r2p2_15.setBuildCard(ArrayList<String>(),false,0,1,0,"");
+			r2p2_15.addBuiltColor("blue");
+			r2p2_15.addBuiltColor("red");
+			cards.add(r2p2_15);
+
+				BuildCard r2p2_16 = new BuildCard("3r32b", ImageIO.read(Deck.class.getResource("/cardImages/r2p2_16.png")));
+			r2p2_16.setBuildCard(ArrayList<String>(),false,0,1,0,"");
+			r2p2_16.addBuiltColor("yellow");
+			r2p2_16.addBuiltColor("black");
+			cards.add(r2p2_16);
+
 			// public void setBuildCard(ArrayList<String> builtColors, boolean fromFile, 
     		//						int builtTier, int playerVictoryPoints, int chooseMarble, String special)
 
