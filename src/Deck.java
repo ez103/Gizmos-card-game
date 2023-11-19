@@ -130,6 +130,8 @@ public class Deck {
 			r1p2_8.setPickCard(new ArrayList<>());
 			r1p2_8.addPickedColor("yellow");
 			cards.add(r1p2_8);
+
+
 		}
     	catch (Exception E) {
     		System.out.println("image exception CARDS DECK rank 1 - file, build, pick cards");
@@ -155,10 +157,56 @@ public class Deck {
     		ConverterCard r1p2_10 = new ConverterCard("3u31c", ImageIO.read(Deck.class.getResource("/cardImages/r1p2_10.png")));
     		r1p2_10.setConverterB("red");
     		cards.add(r1p2_10);
-    		
-    	}
+
+			ConverterCard r1p2_11 = new ConverterCard("1y11c", ImageIO.read(Deck.class.getResource("/cardImages/r1p2_11.png")));
+    		r1p2_11.setConverterA("black", false);
+			cards.add(r1p2_11);
+
+			ConverterCard r1p2_12 = new ConverterCard("1r11c", ImageIO.read(Deck.class.getResource("/cardImages/r1p2_12.png")));
+			r1p2_12.setConverterA("blue", false);
+			card.add(r1p2_12);
+
+			ConverterCard r1p2_13 = new ConverterCard("1a11c", ImageIO.read(Deck.class.getResource("/cardImages/r1p2_13.png")));
+			r1p2_13.setConverterA("red", false);
+    	
+			ConverterCard r1p2_14 = new ConverterCard("1u11c", ImageIO.read(Deck.class.getResource("/cardImages/r1p2_14.png")));
+			r1p2_14.setCConverterA("yellow", false);
+			cards.add(r1p2_14);
+
+			ConverterCard r1p2_15 = new ConverterCard("1r11c", ImageIO.read(Deck.class.getResource("/cardImages/r1p2_15.png")));
+		}
     	catch (Exception E) {
     		System.out.println("image exception CARDS deck rank 1 - ");
     	}
+
+		try {
+			// public void setUpgradeCard(int mLimit, int fLimit, int rLimit, String negator, String discount, String extraVp) {
+
+			// public void Card(String s, BufferedImage image)
+    	    // parameter s must be in this format
+    	    // : [cost][lowercase first letter of color][cardVP][tier][category: lowercase first letter]
+			
+			
+			
+			UpgradeCard r1p3_1 = new UpgradeCard("1a11u",ImageIO.read(Deck.class.getResource("/cardImages/r1p3_1.png")));
+			r1p3_1.setUpgradeCard(1,0,1,"","","");
+			cards.add(r1p3_1);
+			
+			UpgradeCard r1p3_2 = new UpgradeCard
+
+			UpgradeCard	r1p3_3 = new UpgradeCard("1y11u", ImageIO.read(Deck.class.getResource("/cardImages/r1p3_3.png")));
+			r1p3_1.setUpgradeCard(1, 0, 1, "", "", "");
+			cards.add(r1p3_3);
+
+			UpgradeCard r1p3_4 = new UpgradeCard("1r11u", ImageIO.read(Deck.class.getResource("/cardImages/r1p3_4.png")));
+			r1p3_4.setUpgradeCard(1, 1, 0, "", "", "");
+			cards.add(r1p3_4);
+			
+			UpgradeCard r1p3_8 = new UpgradeCard("1r11u", ImageIO.read(Deck.class.getResource("/cardImages/r1p3_8.png")));
+			r1p3_8.setUpgradeCard(1, 0, 1, "", "", "");
+		}
+		catch (Exception E) {
+			System.out.println("image exception TIER 1 upgrade Cards");
+		}
     }
 }
