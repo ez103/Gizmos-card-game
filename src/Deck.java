@@ -204,13 +204,37 @@ public class Deck {
 			r1p3_4.setUpgradeCard(1, 1, 0, "", "", "");
 			cards.add(r1p3_4);
 			
+			UpgradeCard r1p3_5 = new UpgradeCard("1a11u",ImageIO.read(Deck.class.getResource("/cardImages/r1p3_5.png")));
+			r1p3_5.setUpgradeCard(1,1,0,"","","");
+			cards.add(r1p3_5);
 			
-			
+			UpgradeCard r1p3_6 = new UpgradeCard("1u11u", ImageIO.read(Deck.class.getResource("/cardImages/r1p3_6.png")));
+			r1p3_6.setUpgradeCard(1, 1, 0, "", "", "");
+			cards.add(r1p3_6);
+
+			UpgradeCard r1p3_7 = new UpgradeCard("1y11u",ImageIO.read(Deck.class.getResource("/cardImages/r1p3_7.png")));
+            r1p3_7.setUpgradeCard(1,1, 0,"","","");
+            cards.add(r1p3_7);
+
 			UpgradeCard r1p3_8 = new UpgradeCard("1r11u", ImageIO.read(Deck.class.getResource("/cardImages/r1p3_8.png")));
 			r1p3_8.setUpgradeCard(1, 0, 1, "", "", "");
+			cards.add(r1p3_8);
 		}
 		catch (Exception E) {
-			System.out.println("image exception TIER 1 upgrade Cards");
+			System.out.padrintln("image exception TIER 1 upgrade Cards");
+		}
+
+		try {
+			// public void setPickCard(ArrayList<String> pickedColors)
+
+            // public void Card(String s, BufferedImage image)
+    		// parameter s must be in this format
+   			// : [cost][lowercase first letter of color][cardVP][tier][category: lowercase first letter]
+			
+			
+		}
+		catch (Exception E) {
+			System.out.println("image exception tier 2 -");
 		}
     }
 }
