@@ -340,7 +340,7 @@ public class Deck {
 			
 
 			ConverterCard r2p1_19 = new ConverterCard("3r32c", ImageIO.read(Deck.class.getResource("/cardImages/r2p1_19.png")));
-			r2p1_19.setConverterB("blue");
+			r2p1_19.setConverterB("blue");	
 			cards.add(r2p1_19);
 
 			// CONVERTER FORMAT 
@@ -359,5 +359,57 @@ public class Deck {
 			System.out.println("image exception tier 2 - converter ")
 		}
 		
+		try {
+
+			BuildCard r2p2_1 = new BuildCard("3a32b", ImageIO.read(Deck.class.getResource("/cardImages/r2p2_1.png")));
+			r2p2_1.setBuildCard(new ArrayList<String>(), true, 0, 0, 2, "");
+			cards.add(r2p2_1);
+
+			BuildCard r2p2_2 = new BuildCard("3u32b", ImageIO.read(Deck.class.getResource("/cardImages/r2p2_2.png")));
+			r2p2_2.setBuildCard(new ArrayList<String>(), true, 0, 0, 2, "");
+			cards.add(r2p2_2);
+
+			BuildCard r2p2_3 = new BuildCard("3y32b", ImageIO.read(Deck.class.getResource("/cardImages/r2p2_3.png")));
+			r2p2_3.setBuildCard(new ArrayList<String>(), true, 0, 0, 2, "");
+			cards.add(r2p2_3);
+
+			BuildCard r2p2_4 = new BuildCard("3r32b", ImageIO.read(Deck.class.getResource("/cardImages/r2p2_4.png")));
+			r2p2_4.setBuildCard(new ArrayList<String>(), true, 0, 0, 2, "");
+			cards.add(r2p2_4);
+
+			BuildCard r2p2_5 = new BuildCard("2a22b", ImageIO.read(Deck.class.getResource("/cardImages/r2p2_5.png")));
+			r2p2_5.setBuildCard(new ArrayList<String>(), false, 0, 0, 1, "");
+			r2p2_5.addBuiltColor("yellow");
+			r2p2_5.addBuiltColor("red");
+			cards.add(r2p2_5);
+
+			BuildCard r2p2_6 = new BuildCard("2u22b", ImageIO.read(Deck.class.getResource("/cardImages/r2p2_6.png")));
+			r2p2_6.setBuildCard(new ArrayList<String>(), false, 0, 0, 1, "");
+			r2p2_6.addBuiltColor("yellow");
+			r2p2_6.addBuiltColor("black");
+			cards.add(r2p2_6);
+
+			BuildCard r2p2_7 = new BuildCard("2y22b", ImageIO.read(Deck.class.getResource("/cardImages/r2p2_7.png")));
+			r2p2_7.setBuildCard(new ArrayList<String>(), false, 0, 0, 1, "");
+			r2p2_7.addBuiltColor("blue");
+			r2p2_7.addBuiltColor("black");
+			cards.add(r2p2_7);
+
+			BuildCard r2p2_8 = new BuildCard("2r22b", ImageIO.read(Deck.class.getResource("/cardImages/r2p2_8.png")));
+			r2p2_8.setBuildCard(new ArrayList<String>(), false, 0, 0, 1, "");
+			r2p2_8.addBuiltColor("blue");
+			r2p2_8.addBuiltColor("black");
+			cards.add(r2p2_8);
+
+			// public void setBuildCard(ArrayList<String> builtColors, boolean fromFile, 
+    		//						int builtTier, int playerVictoryPoints, int chooseMarble, String special)
+
+			// public void Card(String s, BufferedImage image)
+    	    // parameter s must be in this format
+    	    // : [cost][lowercase first letter of color][cardVP][tier][category: lowercase first letter]
+		}
+		catch (Exception E) {
+			System.out.println("image exception tier 2 part 2 - build cards")
+		}
     }
 }
