@@ -192,7 +192,9 @@ public class Deck {
 			r1p3_1.setUpgradeCard(1,0,1,"","","");
 			cards.add(r1p3_1);
 			
-			UpgradeCard r1p3_2 = new UpgradeCard
+			UpgradeCard r1p3_2 = new UpgradeCard("1u11u",ImageIO.read(Deck.class.getResource("/cardImages/r1p3_2.png")));
+			r1p3_2.setUpgradeCard(1,0,1,"","","");
+			cards.add(r1p3_2);
 
 			UpgradeCard	r1p3_3 = new UpgradeCard("1y11u", ImageIO.read(Deck.class.getResource("/cardImages/r1p3_3.png")));
 			r1p3_1.setUpgradeCard(1, 0, 1, "", "", "");
@@ -201,6 +203,8 @@ public class Deck {
 			UpgradeCard r1p3_4 = new UpgradeCard("1r11u", ImageIO.read(Deck.class.getResource("/cardImages/r1p3_4.png")));
 			r1p3_4.setUpgradeCard(1, 1, 0, "", "", "");
 			cards.add(r1p3_4);
+			
+			
 			
 			UpgradeCard r1p3_8 = new UpgradeCard("1r11u", ImageIO.read(Deck.class.getResource("/cardImages/r1p3_8.png")));
 			r1p3_8.setUpgradeCard(1, 0, 1, "", "", "");
