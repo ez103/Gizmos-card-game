@@ -515,7 +515,7 @@ public class Deck {
 			r3p1_14.setBuildCard(new ArrayList<String>(), false, 2, 0, 2, "");
 			cards.add(r3p1_14);
 			
-			Buildcard r3p1_15 = new  BuildCard("7r73b", ImageIO.read(Deck.class.getResource("/cardImages/r3p1_15.png")));
+			BuildCard r3p1_15 = new  BuildCard("7r73b", ImageIO.read(Deck.class.getResource("/cardImages/r3p1_15.png")));
 			r3p1_15.setBuildCard(new ArrayList<String>(), false, 0,0,0,"research");
 			r3p1_15.addBuiltColor("blue");
 			r3p1_15.addBuiltColor("black");
@@ -592,7 +592,7 @@ public class Deck {
 			cards.add(r3p2_12);
 			
 			UpgradeCard r3p2_13 = new UpgradeCard("7x03u", ImageIO.read(Deck.class.getResource("/cardImages/r3p2_13.png")));
-			r3p2_13.setUpgradeCard(0, 0, 0, "", "", "token")
+			r3p2_13.setUpgradeCard(0, 0, 0, "", "", "token");
 			cards.add(r3p2_13);
 
 			UpgradeCard r3p2_14 = new UpgradeCard("7x03u", ImageIO.read(Deck.class.getResource("/cardImages/r3p2_14.png")));
