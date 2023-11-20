@@ -344,16 +344,7 @@ public class Deck {
 			r2p1_19.setConverterB("blue");	
 			cards.add(r2p1_19);
 
-			// CONVERTER FORMAT 
-    		// type a converter is the "normal" converter; from a given color to another color. performed on 1 or 2 only.
-    		// type b converter is the converter where given color of marble can all be doubled.
-    		
-    		// TYPE A converter : public void setConverterA(String startColor, boolean performOnTwo) 
-    		// TYPE B converter : public void setConverterB(String startColor) {
-    		
-    		// public void Card(String s, BufferedImage image)
-    	    // parameter s must be in this format
-    	    // : [cost][lowercase first letter of color][cardVP][tier][category: lowercase first letter]
+		
 		}
 		
 		catch (Exception E) {
@@ -450,15 +441,48 @@ public class Deck {
 			r2p2_16.addBuiltColor("black");
 			cards.add(r2p2_16);
 
-			// public void setBuildCard(ArrayList<String> builtColors, boolean fromFile, 
-    		//						int builtTier, int playerVictoryPoints, int chooseMarble, String special)
 
-			// public void Card(String s, BufferedImage image)
-    	    // parameter s must be in this format
-    	    // : [cost][lowercase first letter of color][cardVP][tier][category: lowercase first letter]
 		}
 		catch (Exception E) {
 			System.out.println("image exception tier 2 part 2 - build cards");
+		}
+
+		try {
+			ConverterCard r3p1_1 = new ConverterCard("5a53c", ImageIO.read(Deck.class.getResource("/cardImages/r3p1_1.png")));
+			r3p1_1.setConverterB("blue");
+			r3p1_1.setColorB("yellow");
+			cards.add(r3p1_1);
+
+			ConverterCard r3p1_2 = new ConverterCard("5u53c", ImageIO.read(Deck.class.getResource("/cardImages/r3p1_2.png")));
+			r3p1_2.setConverterB("black");
+			r3p1_2.setColorB("red");
+			cards.add(r3p1_2);
+
+			ConverterCard r3p1_3 = new ConverterCard("4r43c",ImageIO.read(Deck.class.getResource("/cardImages/r3p1_3.png")));
+			r3p1_3.setConverterA("",false);
+			cards.add(r3p1_3);
+			
+			ConverterCard r3p1_4 = new ConverterCard("4y43c", ImageIO.read(Deck.class.getResource("/cardImages/r3p1_4.png")));
+			r3p1_4.setConverterA("", false);
+			cards.add(r3p1_4);
+			
+
+
+			// public void Card(String s, BufferedImage image)
+    		// parameter s must be in this format
+    		// : [cost][lowercase first letter of color][cardVP][tier][category: lowercase first letter]
+    
+  			// public void setFileCard(int chooseMarble, int randomMarble, int playerVictoryPoints) {
+		}
+		catch (Exception E) {
+			System.out.println("Tier 3 part 1 image exception");
+		}
+
+		try {
+
+		}
+		catch (Exception E) {
+			System.out.println("Tier 3 part 2 image exception");
 		}
     }
 }
