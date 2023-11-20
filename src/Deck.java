@@ -467,7 +467,70 @@ public class Deck {
 			cards.add(r3p1_4);
 			
 
+			FileCard r3p1_5 = new FileCard("4a43f", ImageIO.read(Deck.class.getResource("/cardImages/r3p1_5.png")));
+			r3p1_5.setFileCard(0, 0, 1);
+			cards.add(r3p1_5);
 
+			FileCard r3p1_6 = new FileCard("4u43f", ImageIO.read(Deck.class.getResource("/cardImages/r3p1_6.png")));
+			r3p1_6.setFileCard(0,3,0);
+			cards.add(r3p1_6);
+
+			FileCard r3p1_7 = new FileCard("4r43f",ImageIO.read(Deck.class.getResource("/cardImages/r3p1_7.png")));
+			r3p1_7.setFileCard(0,0,1);
+			cards.add(r3p1_7);		
+			
+			FileCard r3p1_8 = new FileCard("5y53f", ImageIO.read(Deck.class.getResource("/cardImages/r3p1_8.png")));
+			r3p1_8.setFileCard(0, 0, 2);
+			cards.add(r3p1_8);
+			
+			BuildCard r3p1_9 = new BuildCard("5a53b",ImageIO.read(Deck.class.getResource("/cardImages/r3p1_9.png")));
+			r3p1_9.setBuildCard(new ArrayList<String>(), false,0,0,0,"file");
+			r3p1_9.addBuiltColor("blue");
+			r3p1_9.addBuiltColor("yellow");
+			cards.add(r3p1_9);
+
+			BuildCard r3p1_10 = new BuildCard("6u63b", ImageIO.read(Deck.class.getResource("/cardImages/r3p1_10.png")));
+			r3p1_10.setBuildCard(new ArrayList<String>(), false, 0, 0, 0, "build");
+			r3p1_10.addBuiltColor("yellow");
+			r3p1_10.addBuiltColor("red");
+			cards.add(r3p1_10);
+			
+			BuildCard r3p1_11 = new  BuildCard("5r53b",ImageIO.read(Deck.class.getResource("/cardImages/r3p1_11.png")));
+			r3p1_11.setBuildCard(new ArrayList<String>(),false,0,2,0,"");
+			r3p1_11.addBuiltColor("yellow");
+			r3p1_11.addBuiltColor("black");
+			cards.add(r3p1_11);
+
+			BuildCard r3p1_12 = new BuildCard("6y63b", ImageIO.read(Deck.class.getResource("/cardImages/r3p1_12.png")));
+			r3p1_12.setBuildCard(new ArrayList<String>(), false, 0, 0, 0, "build");
+			r3p1_12.addBuiltColor("blue");
+			r3p1_12.addBuiltColor("black");
+			cards.add(r3p1_12);
+			
+			BuildCard r3p1_13 = new BuildCard("6a63b", ImageIO.read(Deck.class.getResource("/cardImages/r3p1_13.png")));
+			r3p1_13.setBuildCard(new ArrayList<String>(),false,2,0,2,"");
+			cards.add(r3p1_13);
+			
+			BuildCard r3p1_14 = new BuildCard("6r63b", ImageIO.read(Deck.class.getResource("/cardImages/r3p1_14.png")));
+			r3p1_14.setBuildCard(new ArrayList<String>(), false, 2, 0, 2, "");
+			cards.add(r3p1_14);
+			
+			Buildcard r3p1_15 = new  BuildCard("7r73b", ImageIO.read(Deck.class.getResource("/cardImages/r3p1_15.png")));
+			r3p1_15.setBuildCard(new ArrayList<String>(), false, 0,0,0,"research");
+			r3p1_15.addBuiltColor("blue");
+			r3p1_15.addBuiltColor("black");
+			cards.add(r3p1_15);
+
+			BuildCard r3p1_16 = new BuildCard("5y53b", ImageIO.read(Deck.class.getResource("/cardImages/r3p1_16.png")));
+			r3p1_16.setBuildCard(new ArrayList<String>(), false, 0, 0, 0, "file");
+			r3p1_16.addBuiltColor("black");
+			r3p1_16.addBuiltColor("red");
+			cards.add(r3p1_16);
+			
+			// public void setBuildCard(ArrayList<String> builtColors, boolean fromFile, 
+   			//						int builtTier, int playerVictoryPoints, int chooseMarble, String special)
+			// For build cards tier 3 - String special is the action that the player may do. search, file, or build.
+			
 			// public void Card(String s, BufferedImage image)
     		// parameter s must be in this format
     		// : [cost][lowercase first letter of color][cardVP][tier][category: lowercase first letter]
@@ -475,11 +538,17 @@ public class Deck {
   			// public void setFileCard(int chooseMarble, int randomMarble, int playerVictoryPoints) {
 		}
 		catch (Exception E) {
-			System.out.println("Tier 3 part 1 image exception");
+			System.out.println("Tier 3 part 1 image exception- converter, file, build");
 		}
 
 		try {
 
+
+			// public void setUpgradeCard(int mLimit, int fLimit, int rLimit, String negator, String discount, String extraVp) {
+
+			// public void Card(String s, BufferedImage image)
+    	    // parameter s must be in this format
+    	    // : [cost][lowercase first letter of color][cardVP][tier][category: lowercase first letter]
 		}
 		catch (Exception E) {
 			System.out.println("Tier 3 part 2 image exception");
