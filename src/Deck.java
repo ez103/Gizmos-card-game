@@ -543,8 +543,74 @@ public class Deck {
 
 		try {
 
+			UpgradeCard r3p2_1 = new UpgradeCard("6a63u", ImageIO.read(Deck.class.getResource("/cardImages/r3p2_1.png")));
+			r3p2_1.setUpgradeCard(0,0,0,"","research", "");
+			cards.add(r3p2_1);
 
+			UpgradeCard r3p2_2 = new UpgradeCard("5u53u", ImageIO.read(Deck.class.getResource("/cardImages/r3p2_2.png")));
+			r3p2_2.setUpgradeCard(0, 0, 0, "", "file", "");
+			cards.add(r3p2_2); 
+
+			UpgradeCard r3p2_3 = new UpgradeCard("6y63u", ImageIO.read(Deck.class.getResource("/cardImages/r3p2_3.png")));
+			r3p2_2.setUpgradeCard(0, 0, 0, "", "research", "");
+			cards.add(r3p2_3);
+
+			UpgradeCard r3p2_4 = new UpgradeCard("5r53u", ImageIO.read(Deck.class.getResource("/cardImages/r3p2_4.png")));
+			r3p2_4.setUpgradeCard(0,0,0,"","file","");
+			cards.add(r3p2_4);
+			
+			UpgradeCard r3p2_5 = new UpgradeCard("4a83u", ImageIO.read(Deck.class.getResource("/cardImages/r3p2_5.png")));
+			r3p2_5.setUpgradeCard(0, 0, 0, "research", "", "");
+			cards.add(r3p2_5);
+
+			UpgradeCard r3p2_6 = new UpgradeCard("4u73u", ImageIO.read(Deck.class.getResource("/cardImages/r3p2_6.png")));
+			r3p2_6.setUpgradeCard(0,0,0,"file","","");
+			cards.add(r3p2_6);
+
+			UpgradeCard r3p2_7 = new UpgradeCard("4y83u", ImageIO.read(Deck.class.getResource("/cardImages/r3p2_7.png")));
+			r3p2_7.setUpgradeCard(0,0,0,"research","","");
+			cards.add(r3p2_7);
+			
+			UpgradeCard r3p2_8 = new UpgradeCard("4a83u", ImageIO.read(Deck.class.getResource("/cardImages/r3p2_8.png")));
+			r3p2_8.setUpgradeCard(0, 0, 0, "file", "", "");
+			cards.add(r3p2_8);
+			
+			UpgradeCard r3p2_9 = new UpgradeCard("4a43u", ImageIO.read(Deck.class.getResource("/cardImages/r3p2_9.png")));
+			r3p2_9.setUpgradeCard(4,0,0,"","","");
+			cards.add(r3p2_9);
+			
+			UpgradeCard r3p2_10 = new UpgradeCard("4u43u", ImageIO.read(Deck.class.getResource("/cardImages/r3p2_10.png")));
+			r3p2_10.setUpgradeCard(4, 0, 0, "", "", "");
+			cards.add(r3p2_10);
+
+			UpgradeCard r3p2_11 = new UpgradeCard("5y53u", ImageIO.read(Deck.class.getResource("/cardImages/r3p2_11.png")));
+			r3p2_11.setUpgradeCard(0,0,0,"","two","");
+			cards.add(r3p2_11);
+			
+			UpgradeCard r3p2_12 = new UpgradeCard("5u53u", ImageIO.read(Deck.class.getResource("/cardImages/r3p2_12.png")));
+			r3p2_12.setUpgradeCard(0, 0, 0, "", "two", "");
+			cards.add(r3p2_12);
+			
+			UpgradeCard r3p2_13 = new UpgradeCard("7x03u", ImageIO.read(Deck.class.getResource("/cardImages/r3p2_13.png")));
+			r3p2_13.setUpgradeCard(0, 0, 0, "", "", "token")
+			cards.add(r3p2_13);
+
+			UpgradeCard r3p2_14 = new UpgradeCard("7x03u", ImageIO.read(Deck.class.getResource("/cardImages/r3p2_14.png")));
+			r3p2_14.setUpgradeCard(0, 0, 0, "", "", "energy");
+			cards.add(r3p2_14);
+
+			UpgradeCard r3p2_15 = new UpgradeCard("7x03u", ImageIO.read(Deck.class.getResource("/cardImages/r3p2_15.png")));
+			r3p2_15.setUpgradeCard(0, 0, 0, "", "", "token");
+			cards.add(r3p2_15);
+
+			UpgradeCard r3p2_16 = new UpgradeCard("7x03u", ImageIO.read(Deck.class.getResource("/cardImages/r3p2_16.png")));
+			r3p2_16.setUpgradeCard(0, 0, 0, "", "", "energy");
+			cards.add(r3p2_16);
+			
 			// public void setUpgradeCard(int mLimit, int fLimit, int rLimit, String negator, String discount, String extraVp) {
+				// String discount: two, file, research
+				// String negator: research, file
+				// String extraVp: energy, token
 
 			// public void Card(String s, BufferedImage image)
     	    // parameter s must be in this format
