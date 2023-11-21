@@ -13,18 +13,18 @@ public class twopanel extends JPanel{
     public twopanel()
 {
     try{
-        ep = ImageIO.read(new File("tool1.png"));
-        ep1 = ImageIO.read(new File("tool2.png"));
-        ep2 =ImageIO.read(new File("energ.png"));
-        epy =ImageIO.read(new File("ylw.png"));
-         epr =ImageIO.read(new File("red.png"));
-          epblue =ImageIO.read(new File("blue.jpg"));
-     epblack =ImageIO.read(new File("black.png"));
-          chest =ImageIO.read(new File("chest.jpg"));
-        purp     =ImageIO.read(new File("purp.png"));
-        green     =ImageIO.read(new File("lvl2.png"));
-        org     =ImageIO.read(new File("org.png"));
-        blank     =ImageIO.read(new File("blank.png"));
+        ep = ImageIO.read(Deck.class.getResource("/cardImages/tool1.png"));
+        ep1 = ImageIO.read(Deck.class.getResource("/cardImages/tool2.png"));
+        ep2 =ImageIO.read(Deck.class.getResource("/cardImages/energ.png"));
+        epy =ImageIO.read(Deck.class.getResource("/cardImages/ylw.png"));
+         epr =ImageIO.read(Deck.class.getResource("/cardImages/red.png"));
+          epblue =ImageIO.read(Deck.class.getResource("/cardImages/blue.jpg"));
+     epblack =ImageIO.read(Deck.class.getResource("/cardImages/black.png"));
+          chest =ImageIO.read(Deck.class.getResource("/cardImages/chest.jpg"));
+        purp     =ImageIO.read(Deck.class.getResource("/cardImages/purp.png"));
+        green     =ImageIO.read(Deck.class.getResource("/cardImages/lvl2.png"));
+        org     =ImageIO.read(Deck.class.getResource("/cardImages/org.png"));
+        blank     =ImageIO.read(Deck.class.getResource("/cardImages/blank.png"));
         arc     =ImageIO.read(new File("arch.png"));
         res     =ImageIO.read(new File("res.png"));
         back     =ImageIO.read(new File("back.jpg"));

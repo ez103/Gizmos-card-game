@@ -3,6 +3,8 @@ import javax.imageio.*;
 import java.awt.*;
 import java.awt.image.*;
 import java.awt.event.*;
+import java.awt.Window;
+
 import java.io.*;
 import java.util.*;
 import java.util.List;
@@ -29,10 +31,7 @@ public class GizmosPanel extends JPanel implements MouseListener {
 	
 	public void paint(Graphics g) {
 		g.drawImage(ep, 0, 0, 1900,1000,null); 
-		g.drawImage(ep2, 200, 100, 300,70,null); 
-		g.drawImage(ep3, 200, 300, 300,70,null); 
-		g.drawImage(ep4, 600, 100, 300,70,null); 
-		g.drawImage(ep5, 600, 300, 300,70,null); 
+
 		g.drawImage(ep1, 1550 , 630, 350,350,null);
 	}
 	
@@ -44,8 +43,14 @@ public class GizmosPanel extends JPanel implements MouseListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		repaint();
+if(e.getX()>1550&&e.getX()<1900&&e.getY()>630&&e.getY()<980){
+	JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+	frame.dispose();
+	GameFrame mf = new GameFrame();
+
+
+}
+	repaint();
 	}
 
 	@Override
@@ -68,41 +73,4 @@ public class GizmosPanel extends JPanel implements MouseListener {
 
 }
 
-/*
-import java.awt.*;
-import java.awt.Image.*;
-import java.awt.image.BufferedImage;
 
-import javax.imageio.ImageIO;
-import javax.imageio.ImageIO.*;
-import javax.swing.*;
-import java.io.*;
-
-
-public class FirstGraphicPanel extends JPanel {
-	private BufferedImage ep,ep2,ep3,ep4,ep5,ep1;
-    public FirstGraphicPanel() {
-    	try {
-        	ep = ImageIO.read(new File("iangizmo.png"));
-        	ep2 = ImageIO.read(new File("player1.png"));
-        	ep3 = ImageIO.read(new File("player2.png"));
-        	ep4 = ImageIO.read(new File("player3.png"));
-        	ep5 = ImageIO.read(new File("player4.png"));
-        	ep1 = ImageIO.read(new File("butten.png"));
-    	}
-    	catch (Exception E){
-        	System.err.println("error");
-        	return; 
-    	}
-	}
-	
-	public void paint(Graphics g) {
-		g.drawImage(ep, 0, 0, 1900,1000,null); 
-		g.drawImage(ep2, 200, 100, 300,70,null); 
-		g.drawImage(ep3, 200, 300, 300,70,null); 
-		g.drawImage(ep4, 600, 100, 300,70,null); 
-		g.drawImage(ep5, 600, 300, 300,70,null); 
-		g.drawImage(ep1, 1550 , 630, 350,350,null);
-	}
-}
-*/
