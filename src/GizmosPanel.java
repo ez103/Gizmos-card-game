@@ -119,11 +119,17 @@ public class GizmosPanel extends JPanel implements MouseListener {
 			
 			g.drawImage(chest, 650, 15,120,90,null);
 			g.drawImage(marbles.get(5).getImage(), 780, 35,40,40,null);
+			marbles.get(5).setLocation(780, 35);
 			g.drawImage(marbles.get(4).getImage(), 825, 35,40,40,null);
+			marbles.get(4).setLocation(825, 35);
 			g.drawImage(marbles.get(3).getImage(), 870, 35,40,40,null);
+			marbles.get(3).setLocation(870, 35);
 			g.drawImage(marbles.get(2).getImage(), 915, 35,40,40,null);
+			marbles.get(2).setLocation(915, 35);
 			g.drawImage(marbles.get(1).getImage(), 960, 35,40,40,null);
+			marbles.get(1).setLocation(960, 35);
 			g.drawImage(marbles.get(0).getImage(), 1005, 35,40,40,null);
+			marbles.get(0).setLocation(1005, 35);
 			
 			g.drawImage(tier3Cover, 10, 10,130,130,null);
 			g.drawImage(board.get(3).get(0).getImage(), 160, 10,130,130,null);
@@ -190,8 +196,11 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				
 			}
 		}
-		System.out.println("yess");
-		
+
+if (state == 69){
+				 g.setColo
+				g.fillRect(1400,600,500,400);
+		}		
 		
 		
 	}
@@ -203,7 +212,7 @@ public class GizmosPanel extends JPanel implements MouseListener {
 	}
 
 	@Override
-	public void mousePressed(MouseEvent e) {
+	public void mousePressed(MouseEvent e) {		
 		int x = e.getX();
 		int y = e.getY();
 		
@@ -227,6 +236,18 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				state = 69;
 			}
 		}
+		
+		if (state == 10) {
+			if 
+		}
+
+		
+
+
+
+		//research
+		
+
 	}
 
 
