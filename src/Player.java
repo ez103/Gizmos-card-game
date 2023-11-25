@@ -11,7 +11,6 @@ public class Player {
 	private BufferedImage beltImage;
 	private HashMap<String, ArrayList<Card>> belt;
 	private ArrayList<Marble> marbles;
-	private String name;
 	private int playerNumber;
 	private int playerVictoryPoints;
 	private int marbleLimit;
@@ -21,6 +20,16 @@ public class Player {
 	private int y;
 	
 	private boolean canFile = true, canResearch = true; // if player is allowed to do these actions or not - they can be negated by certain cards.
+	
+	public Player(int n) {
+		belt = new HashMap<>();
+		marbles = new ArrayList<>();
+		playerNumber = n;
+		playerVictoryPoints = 0;
+		marbleLimit = 5;
+		fileLimit = 1;
+		researchLimit = 3;
+	}
 	
 	public void negateFile() {
 		canFile = false;

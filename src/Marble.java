@@ -23,10 +23,10 @@ public class Marble {
                 marbleImage = ImageIO.read(Marble.class.getResource("/images/yellowMarble.png"));
             }
             else if (color.equals("blue")) {
-                marbleImage = ImageIO.read(Marble.class.getResource("/images/blueMarble"));
+                marbleImage = ImageIO.read(Marble.class.getResource("/images/blueMarble.jpg"));
             }
             else if (color.equals("black")) {
-                marbleImage = ImageIO.read(Marble.class.getResource("/images/blackMarble"));
+                marbleImage = ImageIO.read(Marble.class.getResource("/images/blackMarble.png"));
             }
             else {
                 System.out.println("NOT corrct color");
@@ -48,13 +48,13 @@ public class Marble {
         return y;
     }
 
-    private void convert(String color) {
+    public void convert(String color) {
         this.color = color;
     }
-    private String getColor() {
+    public String getColor() {
         return color;
     }
-    private BufferedImage getImage() {
+    public BufferedImage getImage() {
         return marbleImage;
     }
 }
