@@ -23,12 +23,25 @@ public class Player {
 	
 	public Player(int n) {
 		belt = new HashMap<>();
+		belt.put("upgrade", new ArrayList<>());
+		belt.put("file", new ArrayList<>());
+		belt.put("build", new ArrayList<>());
+		belt.put("pick", new ArrayList<>());
+		belt.put("converter", new ArrayList<>());
+		
 		marbles = new ArrayList<>();
 		playerNumber = n;
 		playerVictoryPoints = 0;
 		marbleLimit = 5;
 		fileLimit = 1;
 		researchLimit = 3;
+	}
+	
+	public void addCard(Card c) {
+		belt.get(c.getCategory()).add(c);
+	}
+	public HashMap<String, ArrayList<Card>> getCards() {
+		return belt;
 	}
 	
 	public void negateFile() {
@@ -49,6 +62,13 @@ public class Player {
 		sum += playerVictoryPoints;
 
 		return sum;
+	}
+	
+	public void addMarble(Marble m) {
+		marbles.add(m);
+	}
+	public ArrayList<Marble> getMarbles() {
+		return marbles;
 	}
 
 	public void increaseMarbleLimit(int n) {

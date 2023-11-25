@@ -132,7 +132,7 @@ public class GizmosPanel extends JPanel implements MouseListener {
 			g.drawImage(marbles.get(0).getImage(), 1005, 35,40,40,null);
 			marbles.get(0).setLocation(1005, 35);
 			
-			g.drawImage(tier3Cover, 10, 10,130,130,null);
+			g.drawImage(tier3Cover, 10, 10,130,130,null); // drawing the cards on the board
 			g.drawImage(board.get(3).get(0).getImage(), 160, 10,130,130,null);
 			g.drawImage(board.get(3).get(1).getImage(), 300, 10,130,130,null);
 
@@ -149,37 +149,49 @@ public class GizmosPanel extends JPanel implements MouseListener {
 			
 			g.setFont(new Font("Dialog", Font.BOLD, 20));
 
+			
 			g.drawImage(brownBelt, 10, 460, 850,100,null);
 			g.drawImage(energyRing, 870, 400,175,175,null);
-			g.drawString("Player " + turn + ": ",10,440);
+			g.drawString("Player " + turn + ": ",10,440); // Current player.
+			for (Card c : players[turn].getCards().get("upgrade")) {
+				int len = players[turn].getCards().get("upgrade").size();
+				g.drawImage(c.getImage(), 10, len * 35 + 600, 130, 130, null);
+			}
 			
-			g.drawImage(archiveButton, 580, 150,100,60,null);
-			g.drawImage(researchButton, 580, 220,100,60,null);
 			
-
+			int turn2 = 0; // the player whos turn is direcly after; one turn away
 			if (turn%4 == 3) {
 				g.drawString("Player " + 4 + ": " ,1075,25);
+				turn2 = 4;
 			}
 			else {
 				g.drawString("Player " + ((turn+1)%4) + ": " ,1075,25);
+				turn2 = ((turn+1)%4);
 			}
 			g.drawImage(greyBelt, 1075, 40, 800,80,null);
 			
+			int turn3 = 0; // two turns away
 			if (turn%4 == 2) {
 				g.drawString("Player " + 4 + ": " ,1075,325);
+				turn3 = 4;
 			}
 			else {
 				g.drawString("Player " + ((turn+2)%4) + ": " ,1075,325);
+				turn3 = (turn+2)%4;
 			}
 			g.drawImage(greyBelt, 1075, 340, 800,80,null);
 			
+			int turn4 = 0; // three turns away
 			if (turn%4 == 1) {
 				g.drawString("Player " + 4 + ": " ,1075,625);
+				turn4 = 4;
 			}
 			else {
 				g.drawString("Player " + ((turn+3)%4) + ": " ,1075,625);
+				turn4 = (turn+3)%4;
 			}
 			g.drawImage(greyBelt, 1075, 640, 800,80,null);
+			
 			
 			// state = 1 buttons for the player to click
 			if (state == 1) {
@@ -196,16 +208,24 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				g.drawString("Click", 368, 450);
 				
 			}
-		}
-
-if (state == 69){
-				 g.setColor(Color.GRAY);
+			
+			if (state == 69){ // RESeARCH
+				g.setColor(Color.GRAY);
 				g.fillRect(800,850,1100,150);
-				for(int i = 0;i<players[turn].getResearchLimit();i++){
-					cards
+				for (int i = 0; i<players[turn].getResearchLimit(); i++){
+					
 				}
-		}
-		
+			}
+			
+			// DRAW current players MARBLEs in their ENGERY RING in a 4x4 square
+			int ind = 0;
+			for (Marble m : players[turn].getMarbles()) {
+				g.drawImage(m.getImage(), 898 + 27 * (ind%4), 425 + 27 * (ind/4), 25, 25, null);
+				ind++;
+			}
+			
+			
+		} 
 	}
 	
 	@Override
@@ -219,13 +239,12 @@ if (state == 69){
 		int x = e.getX();
 		int y = e.getY();
 		
-		if (e.getX() > 1550 && e.getX() < 1900 && e.getY() > 630 && e.getY() < 980) { // startButton pressed
+		if (startScreen && e.getX() > 1550 && e.getX() < 1900 && e.getY() > 630 && e.getY() < 980) { // startButton pressed
 			startScreen = false;
 			System.out.println("yes");
 		}
-		repaint();
 		
-		if (state == 1) { // start of turn. player chooses which of the 4 actions to do
+		else if (state == 1) { // start of turn. player chooses which of the 4 actions to do
 			if (x >= 348 && x <= 438 && y >= 420 && y <= 469) { // file button
 				state = 10;
 			}
@@ -240,10 +259,26 @@ if (state == 69){
 			}
 		}
 		
-		if (state == 10) {
-			for (int i = 0; i < 6; i++) {
-				if (x >= marbles.get(i).getX() && x <= marbles.get(i).getX() + 40 && y >= marbles.get(i) %% y <= marbles.get(i))
+		else if (state == 21) {
+			if (players[turn].getMarbles().size() < players[turn].getMarbleLimit()) {
+				for (int i = 0; i < 6; i++) {
+					if (x >= marbles.get(i).getX() && x <= marbles.get(i).getX() + 40 && y >= marbles.get(i).getY() && y <= marbles.get(i).getY() + 40) {
+						Marble temp = marbles.get(i);
+						marbles.remove(i);
+						players[turn].addMarble(temp);
+					}
+				}
+				
+				state = 1;
+				turn++;
+				if (turn == 5) {
+					turn = 1;
+				}
 			}
+			else {
+				state = 1; // maybe also add an error message later
+			}
+			
 		}
 
 		
@@ -252,7 +287,7 @@ if (state == 69){
 
 		//research
 		
-
+		repaint();
 	}
 
 
