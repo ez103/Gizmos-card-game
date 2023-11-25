@@ -1,10 +1,13 @@
-import java.util.*;
-
-import javax.imageio.ImageIO;
-
-import java.awt.image.*;
-import java.io.IOException;
+import javax.swing.*;
+import javax.imageio.*;
 import java.awt.*;
+import java.awt.image.*;
+import java.awt.event.*;
+import java.awt.Window;
+
+import java.io.*;
+import java.util.*;
+import java.util.List;
 
 public class Deck {
 
@@ -23,7 +26,9 @@ public class Deck {
     // public void setBuildCard(ArrayList<String> builtColors, boolean fromFile, 
     //						int builtTier, int playerVictoryPoints, int chooseMarble, String special)
     
-    public Deck() {
+    public Deck() throws IOException {
+    	cards = new ArrayList<Card>();
+//    	
     	
     	try {
     		FileCard r1p1_1 = new FileCard("1a11f", ImageIO.read(Deck.class.getResource("/cardImages/r1p1_1.png")));

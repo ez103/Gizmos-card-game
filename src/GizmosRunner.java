@@ -10,7 +10,7 @@ import java.util.List;
 public class GizmosRunner {
 	
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		GizmosFrame gf = new GizmosFrame();
 	}
 }

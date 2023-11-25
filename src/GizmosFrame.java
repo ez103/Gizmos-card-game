@@ -9,7 +9,7 @@ import java.util.List;
 
 public class GizmosFrame extends JFrame {
 	
-	public GizmosFrame() {
+	public GizmosFrame() throws IOException {
 		super("X Gamez Premium Online - Gizmos");
 		setSize(1900, 1000);
 		setResizable(false);
