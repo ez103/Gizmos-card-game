@@ -200,9 +200,9 @@ public class GizmosPanel extends JPanel implements MouseListener {
 
 if (state == 69){
 				 g.setColor(Color.GRAY);
-				g.fillRect(1400,600,500,400);
+				g.fillRect(800,850,1100,150);
 				for(int i = 0;i<players[turn].getResearchLimit();i++){
-					
+					cards
 				}
 		}
 		
@@ -241,7 +241,9 @@ if (state == 69){
 		}
 		
 		if (state == 10) {
-			if 
+			for (int i = 0; i < 6; i++) {
+				if (x >= marbles.get(i).getX() && x <= marbles.get(i).getX() + 40 && y >= marbles.get(i) %% y <= marbles.get(i))
+			}
 		}
 
 		
