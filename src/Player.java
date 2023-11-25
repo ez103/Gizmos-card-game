@@ -61,6 +61,16 @@ public class Player {
 		researchLimit += n;
 	}
 
+	public int getResearchLimit() {
+		return researchLimit;
+	}
+	public int getFileLimit() {
+		return fileLimit;
+	}
+	public int getMarbleLimit() {
+		return marbleLimit;
+	}
+
 	public void setLocation(int x, int y) {
 		this.x = x;
 		this.y = y;

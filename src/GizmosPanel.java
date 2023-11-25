@@ -12,7 +12,8 @@ import java.util.List;
 public class GizmosPanel extends JPanel implements MouseListener {
 	private Player[] players;
 	private int turn; // 1, 2, 3, or 4.
-	
+	private int restier;// for research tier -dev
+
 	private boolean startScreen = true;
 	
 	private BufferedImage startBg, startButton, brownBelt, greyBelt;
@@ -198,10 +199,12 @@ public class GizmosPanel extends JPanel implements MouseListener {
 		}
 
 if (state == 69){
-				 g.setColo
+				 g.setColor(Color.GRAY);
 				g.fillRect(1400,600,500,400);
-		}		
-		
+				for(int i = 0;i<players[turn].getResearchLimit();i++){
+					
+				}
+		}
 		
 	}
 	
