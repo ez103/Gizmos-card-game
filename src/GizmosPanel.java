@@ -100,11 +100,13 @@ public class GizmosPanel extends JPanel implements MouseListener {
     	players[3] = new Player(3);
     	players[4] = new Player(4);
     	
+    	tempcard = new ArrayList<>();
     	
 		addMouseListener(this);
 		
 		turn = 1;
-
+		
+		
 	}
 	
 	public void paint(Graphics g) {
@@ -211,11 +213,12 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				
 			}
 			
-			if (state == 69){ // RESEARCH
+			else if (state == 69){ // RESEARCH panel pops up
 				g.setColor(Color.GRAY);
 				g.fillRect(800,850,1100,150);
 				tempcard = board.get(restier);
-
+				
+				
 				for (int i = 0; i<players[turn].getResearchLimit(); i++){
 					Card resc = tempcard.get(i);
 					int u = i * 100 + 800;
@@ -224,7 +227,7 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				}
 				state = 73;
 			}
-			if(state==70){
+			else if(state==70){
 				Card chosen =tempcard.get(clickCar);
 				tempcard.remove(chosen);
 				board.put(restier,tempcard);
@@ -277,7 +280,8 @@ public class GizmosPanel extends JPanel implements MouseListener {
 		// 				g.drawImage(tier2Cover, 10, 150,130,130,null);
 
 		// 	g.drawImage(tier1Cover, 10, 290,130,130,null);
-		else if(state==72){
+		
+		else if(state==72){ // state=72 means player clicks on one of the tiers to choose which tier to research
 			if(x>10&&x<140&&y>290&&y<420){
 				restier =1;
 				state=69;
