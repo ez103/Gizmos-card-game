@@ -13,9 +13,10 @@ public class GizmosPanel extends JPanel implements MouseListener {
 	private Player[] players;
 	private int turn; // 1, 2, 3, or 4.
 	private int restier;// for research tier -dev
-
+	private int clickCar; //research purposes
 	private boolean startScreen = true;
-	
+	private ArrayList<Card> tempcard;
+
 	private BufferedImage startBg, startButton, brownBelt, greyBelt;
 	private BufferedImage energyRing, yellowMarble, redMarble, blueMarble, blackMarble, chest;
 	private BufferedImage tier3Cover, tier2Cover, tier1Cover, blank, archiveButton, researchButton, background;
@@ -141,6 +142,7 @@ public class GizmosPanel extends JPanel implements MouseListener {
 			g.drawImage(board.get(2).get(1).getImage(), 300, 150,130,130,null);
 			g.drawImage(board.get(2).get(2).getImage(), 440, 150,130,130,null);
 			
+
 			g.drawImage(tier1Cover, 10, 290,130,130,null);
 			g.drawImage(board.get(1).get(0).getImage(), 160, 290,130,130,null);
 			g.drawImage(board.get(1).get(1).getImage(), 300, 290,130,130,null);
@@ -209,12 +211,24 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				
 			}
 			
-			if (state == 69){ // RESeARCH
+			if (state == 69){ // RESEARCH
 				g.setColor(Color.GRAY);
 				g.fillRect(800,850,1100,150);
+				tempcard = board.get(restier);
+
 				for (int i = 0; i<players[turn].getResearchLimit(); i++){
-					
+					Card resc = tempcard.get(i);
+					int u = i * 100 + 800;
+					g.drawImage(resc.getImage(),u,860,100,120,null);
+
 				}
+				state = 73;
+			}
+			if(state==70){
+				Card chosen =tempcard.get(clickCar);
+				tempcard.remove(chosen);
+				board.put(restier,tempcard)
+				
 			}
 			
 			// DRAW current players MARBLEs in their ENGERY RING in a 4x4 square
@@ -255,8 +269,39 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				state = 11;
 			}
 			else if (x >= 762 && x <= 852 && y >= 420 && y <= 469) { // research button
-				state = 69;
+				state = 72;
 			}
+		}
+		// g.drawImage(tier3Cover, 10, 10,130,130,null); // drawing the cards on the board
+
+		// 				g.drawImage(tier2Cover, 10, 150,130,130,null);
+
+		// 	g.drawImage(tier1Cover, 10, 290,130,130,null);
+		if(state==72){
+			if(x>10&&x<140&&y>290&&y<420){
+				restier =1;
+				state=69;
+			}
+			else if(x>10&&x<140&&y>150&&y<280){
+				restier =2;
+				state=69;
+
+			}
+			else if(x>10&&x<140&&y>10&&y<140){
+				restier =3;
+				state=69;
+
+			}
+		
+		}
+		if(state ==73&&y>850&&y<1000){
+for (int i = 0; i<players[turn].getResearchLimit(); i++){
+	int erm =i * 100 + 800;
+	if(x> erm&&x<erm+100;){
+		clickCar=i;
+	}
+		}
+		state =70;
 		}
 		
 		else if (state == 21) {
