@@ -218,12 +218,12 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				g.fillRect(800,850,1100,150);
 				tempcard = board.get(restier);
 				
-				
+				int ind = 5 - restier; //  index of card arraylist that player sees
 				for (int i = 0; i<players[turn].getResearchLimit(); i++){
-					Card resc = tempcard.get(i);
+					Card resc = tempcard.get(ind);
 					int u = i * 100 + 800;
-					g.drawImage(resc.getImage(),u,860,100,120,null);
-
+					g.drawImage(resc.getImage(),u,845,100,120,null);
+					ind++;
 				}
 				state = 73;
 			}

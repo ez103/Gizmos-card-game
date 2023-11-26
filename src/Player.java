@@ -9,8 +9,11 @@ import java.util.List;
 
 public class Player {
 	private BufferedImage beltImage;
+	
 	private HashMap<String, ArrayList<Card>> belt;
+	private ArrayList<Card> archive; // the "filed" cards of teh palyer. make sure this does not go over fileLimit
 	private ArrayList<Marble> marbles;
+	
 	private int playerNumber;
 	private int playerVictoryPoints;
 	private int marbleLimit;
@@ -29,12 +32,15 @@ public class Player {
 		belt.put("pick", new ArrayList<>());
 		belt.put("converter", new ArrayList<>());
 		
+		archive = new ArrayList<>();
 		marbles = new ArrayList<>();
+		
 		playerNumber = n;
 		playerVictoryPoints = 0;
 		marbleLimit = 5;
 		fileLimit = 1;
 		researchLimit = 3;
+		
 	}
 	
 	public void addCard(Card c) {
@@ -42,6 +48,13 @@ public class Player {
 	}
 	public HashMap<String, ArrayList<Card>> getCards() {
 		return belt;
+	}
+	public boolean archiveCard(Card c) { // retuyrns false if reached the limit, true if succuessfully addeed the card
+		if (archive.size() == fileLimit) {
+			return false;
+		}
+		archive.add(c);
+		return true;
 	}
 	
 	public void negateFile() {
