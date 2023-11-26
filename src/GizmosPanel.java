@@ -12,8 +12,11 @@ import java.util.List;
 public class GizmosPanel extends JPanel implements MouseListener {
 	private Player[] players;
 	private int turn; // 1, 2, 3, or 4.
+	
 	private int restier;// for research tier -dev
 	private int clickCar; //research purposes
+	private Card chosen; // chosen card to file or build in the RESEARCH options
+	
 	private boolean startScreen = true;
 	private ArrayList<Card> tempcard;
 
@@ -135,6 +138,7 @@ public class GizmosPanel extends JPanel implements MouseListener {
 			g.drawImage(marbles.get(0).getImage(), 1005, 35,40,40,null);
 			marbles.get(0).setLocation(1005, 35);
 			
+			
 			g.drawImage(tier3Cover, 10, 10,130,130,null); // drawing the cards on the board
 			g.drawImage(board.get(3).get(0).getImage(), 160, 10,130,130,null);
 			board.get(3).get(0).setLocation(160, 10);
@@ -151,10 +155,13 @@ public class GizmosPanel extends JPanel implements MouseListener {
 
 			g.drawImage(tier1Cover, 10, 290,130,130,null);
 			g.drawImage(board.get(1).get(0).getImage(), 160, 290,130,130,null);
-			board.get(2).get(0).setLocation(160, 150);
+			board.get(1).get(0).setLocation(160, 290);
 			g.drawImage(board.get(1).get(1).getImage(), 300, 290,130,130,null);
+			board.get(1).get(1).setLocation(300, 290);
 			g.drawImage(board.get(1).get(2).getImage(), 440, 290,130,130,null);
+			board.get(1).get(2).setLocation(440, 290);
 			g.drawImage(board.get(1).get(3).getImage(), 580, 290,130,130,null);
+			board.get(1).get(3).setLocation(580, 290);
 			
 			g.setFont(new Font("Dialog", Font.BOLD, 20));
 
@@ -167,6 +174,16 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				g.drawImage(c.getImage(), 10, len * 35 + 600, 130, 130, null);
 			}
 			
+			// draw the archived cards of a player
+			g.setFont(new Font("Cambria", Font.BOLD, 25));
+			g.drawString("Cards in Archive: ", 760, 592);
+			int eric = 0;
+			for (Card c : players[turn].getArchive()) {
+				g.drawImage(c.getImage(), 790 + (eric/3)*100, 595 + 100 * eric, 100, 100, null);
+				eric++;
+			}
+			
+			g.setFont(new Font("Dialog", Font.BOLD, 20));
 			
 			int turn2 = 0; // the player whos turn is direcly after; one turn away
 			if (turn%4 == 3) {
@@ -233,12 +250,12 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				state = 73;
 			}
 			else if(state==70){
-				Card chosen =tempcard.get(5 - restier + clickCar); // need to check this if there is a bug
+				chosen =tempcard.get(5 - restier + clickCar); // need to check this if there is a bug
 
 				tempcard.remove(5 - restier + clickCar);
 				List<Card> Rem = tempcard.subList(0, players[turn].getResearchLimit()); 
 				tempcard.addAll(Rem);
-				for(int i=0<i<players[turn].getResearchLimit()-1;i++){
+				for(int i=0; i<players[turn].getResearchLimit()-1; i++){
 					tempcard.remove(0);
 				}
 				board.put(restier,tempcard);
@@ -247,7 +264,18 @@ public class GizmosPanel extends JPanel implements MouseListener {
 			}
 			else if(state==76){
 				if(players[turn].archiveCard(chosen)){
-				players[turn].addCard(chosen);
+					players[turn].addCard(chosen);
+				}
+				boolean success = players[turn].archiveCard(chosen);
+				if (success) { // added to archive successfully. Now we can go to the next player.
+					turn++;
+					if (turn == 5) {
+						turn = 1;
+					}
+					state = 1;
+				}
+				else { // OVER FILE LIMIT. maybe add an error message later.
+					state = 73; // player must choose a card again, then choose whether to
 				}
 			}
 			
@@ -280,13 +308,13 @@ public class GizmosPanel extends JPanel implements MouseListener {
 		
 		else if (state == 1) { // start of turn. player chooses which of the 4 actions to do
 			if (x >= 348 && x <= 438 && y >= 420 && y <= 469) { // file button
-				state = 10;
+				state = 11;
 			}
 			else if (x >= 500 && x <= 590 && y >= 420 && y <= 469) { // pick button
 				state = 21;
 			}
 			else if (x >= 641 && x <= 731 && y >= 420 && y <= 469) { // build button
-				state = 11;
+				state = 10;
 			}
 			else if (x >= 762 && x <= 852 && y >= 420 && y <= 469) { // research button
 				state = 72;
@@ -332,14 +360,15 @@ public class GizmosPanel extends JPanel implements MouseListener {
 						Marble temp = marbles.get(i);
 						marbles.remove(i);
 						players[turn].addMarble(temp);
+						
+						state = 1;
+						turn++;
+						if (turn == 5) {
+							turn = 1;
+						}
 					}
 				}
 				
-				state = 1;
-				turn++;
-				if (turn == 5) {
-					turn = 1;
-				}
 			}
 			else {
 				state = 1; // maybe also add an error message later
@@ -347,9 +376,59 @@ public class GizmosPanel extends JPanel implements MouseListener {
 			
 		}
 
-		else if (state == 11) { // FILE
-			for (int i = 0; i < board.get(1).size(); i++) {
-				
+		else if (state == 11) { // player chooses to do the FILE action
+			for (int i = 0; i < 4; i++) { // tier 1 cards
+				Card c = board.get(1).get(i);
+				if (x >= c.getX() && x <= c.getX() + 130 && y >= c.getY() && y <= c.getY() + 130) {
+					boolean boob = players[turn].archiveCard(c);
+					if (boob) { // archived succesfully
+						board.get(1).remove(i); // remove the card from the board because it is now in player archive
+						state = 1;
+						turn++;
+						if (turn == 5) {
+							turn = 1;
+						}
+					}
+					else {
+						state = 1; // try again. maybe put an error message here later.
+					}
+				}
+			}
+			
+			for (int i = 0; i < 3; i++) { // tier 2 cards
+				Card c = board.get(2).get(i);
+				if (x >= c.getX() && x <= c.getX() + 130 && y >= c.getY() && y <= c.getY() + 130) {
+					boolean boob = players[turn].archiveCard(c);
+					if (boob) { // archived succesfully
+						board.get(2).remove(i); // remove the card from the board because it is now in player archive
+						state = 1;
+						turn++;
+						if (turn == 5) {
+							turn = 1;
+						}
+					}
+					else {
+						state = 1; // try again. maybe put an error message here later.
+					}
+				}
+			}
+			
+			for (int i = 0; i < 2; i++) { // tier 3 cards
+				Card c = board.get(3).get(i);
+				if (x >= c.getX() && x <= c.getX() + 130 && y >= c.getY() && y <= c.getY() + 130) {
+					boolean boob = players[turn].archiveCard(c);
+					if (boob) { // archived succesfully
+						board.get(3).remove(i); // remove the card from the board because it is now in player archive
+						state = 1;
+						turn++;
+						if (turn == 5) {
+							turn = 1;
+						}
+					}
+					else {
+						state = 1; // try again. maybe put an error message here later.
+					}
+				}
 			}
 		}
 

@@ -56,6 +56,9 @@ public class Player {
 		archive.add(c);
 		return true;
 	}
+	public ArrayList<Card> getArchive() {
+		return archive;
+	}
 	
 	public void negateFile() {
 		canFile = false;
