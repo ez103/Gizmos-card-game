@@ -151,6 +151,7 @@ public class GizmosPanel extends JPanel implements MouseListener {
 
 			g.drawImage(tier1Cover, 10, 290,130,130,null);
 			g.drawImage(board.get(1).get(0).getImage(), 160, 290,130,130,null);
+			board.get(2).get(0).setLocation(160, 150);
 			g.drawImage(board.get(1).get(1).getImage(), 300, 290,130,130,null);
 			g.drawImage(board.get(1).get(2).getImage(), 440, 290,130,130,null);
 			g.drawImage(board.get(1).get(3).getImage(), 580, 290,130,130,null);
