@@ -137,13 +137,17 @@ public class GizmosPanel extends JPanel implements MouseListener {
 			
 			g.drawImage(tier3Cover, 10, 10,130,130,null); // drawing the cards on the board
 			g.drawImage(board.get(3).get(0).getImage(), 160, 10,130,130,null);
+			board.get(3).get(0).setLocation(160, 10);
 			g.drawImage(board.get(3).get(1).getImage(), 300, 10,130,130,null);
+			board.get(3).get(1).setLocation(300, 10);
 
 			g.drawImage(tier2Cover, 10, 150,130,130,null);
 			g.drawImage(board.get(2).get(0).getImage(), 160, 150,130,130,null);
+			board.get(2).get(0).setLocation(160, 150);
 			g.drawImage(board.get(2).get(1).getImage(), 300, 150,130,130,null);
+			board.get(2).get(1).setLocation(300, 150);
 			g.drawImage(board.get(2).get(2).getImage(), 440, 150,130,130,null);
-			
+			board.get(2).get(2).setLocation(440, 150);
 
 			g.drawImage(tier1Cover, 10, 290,130,130,null);
 			g.drawImage(board.get(1).get(0).getImage(), 160, 290,130,130,null);
@@ -228,10 +232,22 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				state = 73;
 			}
 			else if(state==70){
-				Card chosen =tempcard.get(clickCar);
-				tempcard.remove(chosen);
+				Card chosen =tempcard.get(5 - restier + clickCar); // need to check this if there is a bug
+
+				tempcard.remove(5 - restier + clickCar);
+				List<Card> Rem = tempcard.subList(0, players[turn].getResearchLimit()); 
+				tempcard.addAll(Rem);
+				for(int i=0<i<players[turn].getResearchLimit()-1;i++){
+					tempcard.remove(0);
+				}
 				board.put(restier,tempcard);
+				state = 74;
 				
+			}
+			else if(state==76){
+				if(players[turn].archiveCard(chosen)){
+				players[turn].addCard(chosen);
+				}
 			}
 			
 			// DRAW current players MARBLEs in their ENGERY RING in a 4x4 square
@@ -330,7 +346,11 @@ public class GizmosPanel extends JPanel implements MouseListener {
 			
 		}
 
-		
+		else if (state == 11) { // FILE
+			for (int i = 0; i < board.get(1).size(); i++) {
+				
+			}
+		}
 
 
 
