@@ -227,7 +227,7 @@ public class GizmosPanel extends JPanel implements MouseListener {
 			if(state==70){
 				Card chosen =tempcard.get(clickCar);
 				tempcard.remove(chosen);
-				board.put(restier,tempcard)
+				board.put(restier,tempcard);
 				
 			}
 			
@@ -277,7 +277,7 @@ public class GizmosPanel extends JPanel implements MouseListener {
 		// 				g.drawImage(tier2Cover, 10, 150,130,130,null);
 
 		// 	g.drawImage(tier1Cover, 10, 290,130,130,null);
-		if(state==72){
+		else if(state==72){
 			if(x>10&&x<140&&y>290&&y<420){
 				restier =1;
 				state=69;
@@ -294,14 +294,14 @@ public class GizmosPanel extends JPanel implements MouseListener {
 			}
 		
 		}
-		if(state ==73&&y>850&&y<1000){
-for (int i = 0; i<players[turn].getResearchLimit(); i++){
-	int erm =i * 100 + 800;
-	if(x> erm&&x<erm+100;){
-		clickCar=i;
-	}
-		}
-		state =70;
+		else if(state ==73&&y>850&&y<1000){
+			for (int i = 0; i<players[turn].getResearchLimit(); i++){
+				int erm =i * 100 + 800;
+				if(x> erm&&x<erm+100){
+					clickCar=i;
+				}
+			}
+			state =70;
 		}
 		
 		else if (state == 21) {
