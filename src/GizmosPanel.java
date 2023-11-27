@@ -124,6 +124,10 @@ public class GizmosPanel extends JPanel implements MouseListener {
 			
 			g.drawImage(background, 0, 0,1900,1000,null);
 			
+			
+			//for (players.turn[].getCards().get(""))
+			
+			
 			g.drawImage(chest, 650, 15,120,90,null);
 			g.drawImage(marbles.get(5).getImage(), 780, 35,40,40,null);
 			marbles.get(5).setLocation(780, 35);
@@ -262,29 +266,14 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				state = 74;
 				
 			}
-			else if(state ==74){
+			else if(state ==74){ // these buttons, the player uses to choose to build or file after research.
 				g.fillOval(641, 420, 90, 49);//build
 				g.fillOval(348, 420, 90, 49);//file
-				g.drawString("Click", 782, 450);
-				g.drawString("Click", 520, 450);
+				g.drawString("Click", 661, 450);
+				g.drawString("Click", 368, 450);
 			}
 
-			else if(state==76){
-				if(players[turn].archiveCard(chosen)){
-					players[turn].addCard(chosen);
-				}
-				boolean success = players[turn].archiveCard(chosen);
-				if (success) { // added to archive successfully. Now we can go to the next player.
-					turn++;
-					if (turn == 5) {
-						turn = 1;
-					}
-					state = 1;
-				}
-				else { // OVER FILE LIMIT. maybe add an error message later.
-					state = 73; // player must choose a card again, then choose whether to
-				}
-			}
+			
 			
 			// DRAW current players MARBLEs in their ENGERY RING in a 4x4 square
 			int ind = 0;
@@ -360,6 +349,24 @@ public class GizmosPanel extends JPanel implements MouseListener {
 			state =70;
 		}
 		
+		else if(state==76){
+//			if(players[turn].archiveCard(chosen)){
+//				players[turn].addCard(chosen);
+//			} don't need this, addCard adds to belt. archiveCard adds to the player archive when it is called.
+			
+			boolean success = players[turn].archiveCard(chosen);
+			if (success) { // added to archive successfully. Now we can go to the next player.
+				turn++;
+				if (turn == 5) {
+					turn = 1;
+				}
+				state = 1;
+			}
+			else { // OVER FILE LIMIT. maybe add an error message later.
+				state = 73; // player must choose a card again, then choose whether to
+			}
+		}
+		
 		else if (state == 21) {
 			if (players[turn].getMarbles().size() < players[turn].getMarbleLimit()) {
 				for (int i = 0; i < 6; i++) {
@@ -395,6 +402,7 @@ public class GizmosPanel extends JPanel implements MouseListener {
 						if (turn == 5) {
 							turn = 1;
 						}
+						
 					}
 					else {
 						state = 1; // try again. maybe put an error message here later.

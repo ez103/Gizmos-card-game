@@ -34,7 +34,7 @@ public class Player {
 		
 		archive = new ArrayList<>();
 		try {
-			archive.add(new FileCard("0x00f", ImageIO.read(Player.class.getResource("/cardImages/defaultCard.png"))));
+			belt.get("file").add(new FileCard("0x00f", ImageIO.read(Player.class.getResource("/cardImages/defaultCard.png"))));
 		}
 		catch(Exception E) {
 			System.out.println("default arhcive card image exception");
