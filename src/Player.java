@@ -40,6 +40,7 @@ public class Player {
 			System.out.println("default arhcive card image exception");
 		}
 		
+		
 		marbles = new ArrayList<>();
 		
 		playerNumber = n;

@@ -222,10 +222,10 @@ public class GizmosPanel extends JPanel implements MouseListener {
 			// state = 1 buttons for the player to click
 			if (state == 1) {
 				g.setColor(Color.blue);
-				g.fillOval(762, 420, 90, 49);
-				g.fillOval(641, 420, 90, 49);
-				g.fillOval(500, 420, 90, 49);
-				g.fillOval(348, 420, 90, 49);
+				g.fillOval(762, 420, 90, 49);//res
+				g.fillOval(641, 420, 90, 49);//build
+				g.fillOval(500, 420, 90, 49);//pick
+				g.fillOval(348, 420, 90, 49);//file
 				
 				g.setColor(Color.white);
 				g.drawString("Click", 782, 450);
@@ -262,6 +262,13 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				state = 74;
 				
 			}
+			else if(state ==74){
+				g.fillOval(641, 420, 90, 49);//build
+				g.fillOval(348, 420, 90, 49);//file
+				g.drawString("Click", 782, 450);
+				g.drawString("Click", 520, 450);
+			}
+
 			else if(state==76){
 				if(players[turn].archiveCard(chosen)){
 					players[turn].addCard(chosen);
@@ -431,7 +438,16 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				}
 			}
 		}
+		else if(state ==74){
 
+			if(x>641&&x<730&&y>420&&y<470){
+				state = 75;
+				//fuck bitch then build
+			}
+			else if(x>348&&x<440&&y>420&&y<470){
+				state = 76;
+			}
+		}
 
 
 		//research
