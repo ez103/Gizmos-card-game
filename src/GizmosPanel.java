@@ -249,13 +249,13 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				}
 				state = 73;
 			}
-			else if(state==70){
+			else if(state==70){ // player click on card, puts back into back of arraylist
 				chosen =tempcard.get(5 - restier + clickCar); // need to check this if there is a bug
 
 				tempcard.remove(5 - restier + clickCar);
 				List<Card> Rem = tempcard.subList(0, players[turn].getResearchLimit()); 
 				tempcard.addAll(Rem);
-				for(int i=0; i<players[turn].getResearchLimit()-1; i++){
+				for(int i=5 - restier; i<players[turn].getResearchLimit()-1; i++){
 					tempcard.remove(0);
 				}
 				board.put(restier,tempcard);
