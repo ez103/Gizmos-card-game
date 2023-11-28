@@ -9,6 +9,8 @@ import java.io.*;
 import java.util.*;
 import java.util.List;
 
+
+ // suck my ass
 public class GizmosPanel extends JPanel implements MouseListener {
 	private Player[] players;
 	private int turn; // 1, 2, 3, or 4.
