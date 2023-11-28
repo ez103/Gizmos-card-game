@@ -1,6 +1,6 @@
 import java.awt.image.BufferedImage;
 import java.util.*;
-//testsddev
+//ball
 public class BuildCard extends Card {
 
 	private ArrayList<String> builtColors; // an arraylist of all possible colors that just got built that will trigger the action.
