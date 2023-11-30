@@ -206,11 +206,11 @@ public class GizmosPanel extends JPanel implements MouseListener {
 			}
 			
 			// draw the archived cards of a player
-			g.setFont(new Font("Cambria", Font.BOLD, 25));
-			g.drawString("Cards in Archive: ", 760, 592);
+			g.setFont(new Font("Cambria", Font.BOLD, 27));
+			g.drawString("Cards in Archive: ", 760, 600);
 			int eric = 0;
 			for (Card c : players[turn].getArchive()) {
-				g.drawImage(c.getImage(), 790 + (eric/3)*100, 595 + 100 * eric, 100, 100, null);
+				g.drawImage(c.getImage(), 790 + (eric/3)*100, 610 + 110 * (eric%3), 100, 100, null);
 				eric++;
 			}
 			
@@ -264,7 +264,7 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				g.drawImage(greyBelt, 1075, 640, 800,80,null);
 			}
 			
-			for (int i = 0; i < 3; i++) { // DRAWING CARDS OF THE OTHER 3 PLAYERS
+			for (int i = 0; i < 3; i++) { // DRAWING CARDS OF THE OTHER 3 PLAYERS. very rough right now, need to change later
 				Player boobies;
 				if (i == 0) {
 					boobies = players[turn2];
@@ -276,7 +276,31 @@ public class GizmosPanel extends JPanel implements MouseListener {
 					boobies = players[turn4];
 				}
 				
-				
+				g.drawString("Player " + turn + ": ",10,440); // side player
+				for (Card c : boobies.getCards().get("upgrade")) {
+					int len = boobies.getCards().get("upgrade").size();
+					g.drawImage(c.getImage(), 1100, len*35 + 95 + 300 * i, 100, 100, null);
+				}
+				g.drawString("Player " + turn + ": ",10,440); // side player.
+				for (Card c : boobies.getCards().get("converter")) {
+					int len = boobies.getCards().get("converter").size();
+					g.drawImage(c.getImage(), 1240, len*35 + 95 + 300 * i, 100, 100, null);
+				}
+				g.drawString("Player " + turn + ": ",10,440); // side player.
+				for (Card c : boobies.getCards().get("file")) {
+					int len = boobies.getCards().get("file").size();
+					g.drawImage(c.getImage(), 1380, len*35 + 95 + 300 * i, 100, 100, null);
+				}
+				g.drawString("Player " + turn + ": ",10,440); // side player.
+				for (Card c : boobies.getCards().get("pick")) {
+					int len = boobies.getCards().get("pick").size();
+					g.drawImage(c.getImage(), 1520, len*35 + 95 + 300 * i, 100, 100, null);
+				}
+				g.drawString("Player " + turn + ": ",10,440); // side player.
+				for (Card c : boobies.getCards().get("build")) {
+					int len = boobies.getCards().get("build").size();
+					g.drawImage(c.getImage(), 1660, len*35 + 95 + 300 * i, 100, 100, null);
+				}
 			}
 			
 			// state = 1 buttons for the player to click
