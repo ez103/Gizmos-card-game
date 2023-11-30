@@ -172,32 +172,37 @@ public class GizmosPanel extends JPanel implements MouseListener {
 			g.setFont(new Font("Dialog", Font.BOLD, 20));
 
 			
-			g.drawImage(brownBelt, 10, 460, 850,100,null);
+			if (turn == 1) { // IF current player is PLAYER 1
+				g.drawImage(brownBelt, 10, 460, 850,100,null);
+			}
+			else { // IF current is not PLAYER
+				g.drawImage(greyBelt, 10, 460, 850,100,null);
+			}
 			g.drawImage(energyRing, 870, 400,175,175,null);
 			g.drawString("Player " + turn + ": ",10,440); // Current player. CARDS
 			for (Card c : players[turn].getCards().get("upgrade")) {
 				int len = players[turn].getCards().get("upgrade").size();
-				g.drawImage(c.getImage(), 10, len * 35 + 560, 130, 130, null);
+				g.drawImage(c.getImage(), 20, len * 35 + 535, 130, 130, null);
 			}
 			g.drawString("Player " + turn + ": ",10,440); // Current player.
 			for (Card c : players[turn].getCards().get("converter")) {
 				int len = players[turn].getCards().get("converter").size();
-				g.drawImage(c.getImage(), 160, len * 35 + 600, 130, 130, null);
+				g.drawImage(c.getImage(), 175, len * 35 + 535, 130, 130, null);
 			}
 			g.drawString("Player " + turn + ": ",10,440); // Current player.
 			for (Card c : players[turn].getCards().get("file")) {
 				int len = players[turn].getCards().get("file").size();
-				g.drawImage(c.getImage(), 310, len * 35 + 600, 130, 130, null);
+				g.drawImage(c.getImage(), 330, len * 35 + 535, 130, 130, null);
 			}
 			g.drawString("Player " + turn + ": ",10,440); // Current player.
 			for (Card c : players[turn].getCards().get("pick")) {
 				int len = players[turn].getCards().get("pick").size();
-				g.drawImage(c.getImage(), 460, len * 35 + 600, 130, 130, null);
+				g.drawImage(c.getImage(), 485, len * 35 + 535, 130, 130, null);
 			}
 			g.drawString("Player " + turn + ": ",10,440); // Current player.
 			for (Card c : players[turn].getCards().get("build")) {
 				int len = players[turn].getCards().get("build").size();
-				g.drawImage(c.getImage(), 610, len * 35 + 600, 130, 130, null);
+				g.drawImage(c.getImage(), 640, len * 35 + 535, 130, 130, null);
 			}
 			
 			// draw the archived cards of a player
@@ -220,7 +225,12 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				g.drawString("Player " + ((turn+1)%4) + ": " ,1075,25);
 				turn2 = ((turn+1)%4);
 			}
-			g.drawImage(greyBelt, 1075, 40, 800,80,null);
+			if (turn2 == 1) {
+				g.drawImage(brownBelt, 1075, 40, 800,80,null);
+			}
+			else {
+				g.drawImage(greyBelt, 1075, 40, 800,80,null);
+			}
 			
 			int turn3 = 0; // two turns away
 			if (turn%4 == 2) {
@@ -231,7 +241,12 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				g.drawString("Player " + ((turn+2)%4) + ": " ,1075,325);
 				turn3 = (turn+2)%4;
 			}
-			g.drawImage(greyBelt, 1075, 340, 800,80,null);
+			if (turn3 == 1) {
+				g.drawImage(brownBelt, 1075, 340, 800,80,null);
+			}
+			else {
+				g.drawImage(greyBelt, 1075, 340, 800,80,null);
+			}
 			
 			int turn4 = 0; // three turns away
 			if (turn%4 == 1) {
@@ -242,8 +257,27 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				g.drawString("Player " + ((turn+3)%4) + ": " ,1075,625);
 				turn4 = (turn+3)%4;
 			}
-			g.drawImage(greyBelt, 1075, 640, 800,80,null);
+			if (turn4 == 1) {
+				g.drawImage(brownBelt, 1075, 640, 800,80,null);
+			} 
+			else {
+				g.drawImage(greyBelt, 1075, 640, 800,80,null);
+			}
 			
+			for (int i = 0; i < 3; i++) { // DRAWING CARDS OF THE OTHER 3 PLAYERS
+				Player boobies;
+				if (i == 0) {
+					boobies = players[turn2];
+				}
+				else if (i == 2) {
+					boobies = players[turn3];
+				}
+				else {
+					boobies = players[turn4];
+				}
+				
+				
+			}
 			
 			// state = 1 buttons for the player to click
 			if (state == 1) {
