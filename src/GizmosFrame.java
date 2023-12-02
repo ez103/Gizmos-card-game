@@ -10,7 +10,7 @@ import java.util.List;
 public class GizmosFrame extends JFrame {
 	
 	public GizmosFrame() throws IOException {
-		super("X Gamez Premium Online - Gizmos");
+		super("Computer Science III Gizmos Project: Eric Z, Dev S, Ian N, Shugo S");
 		setSize(1900, 1000);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
