@@ -569,6 +569,13 @@ public class GizmosPanel extends JPanel implements MouseListener {
             list.set(i, sublist.get(j));
         }
     }
+	
+	public static <T> void shorten16(ArrayList<T> list) {
+		shuffle(list, 0, list.size());
+		for (int i = 0; i < 16; i++) {
+			
+		}
+	}
 }
 
 
