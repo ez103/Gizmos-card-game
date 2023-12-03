@@ -263,7 +263,11 @@ public class GizmosPanel extends JPanel implements MouseListener {
 			else {
 				g.drawImage(greyBelt, 1075, 640, 800,80,null);
 			}
-			
+
+
+
+
+			// DRAW current players MARBLEs in their ENGERY RING in a 4x4 square
 			for (int i = 0; i < 3; i++) { // DRAWING CARDS OF THE OTHER 3 PLAYERS. very rough right now, need to change later
 				Player boobies;
 				if (i == 0) {
@@ -275,7 +279,7 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				else {
 					boobies = players[turn4];
 				}
-				
+
 				g.drawString("Player " + turn + ": ",10,440); // side player
 				for (Card c : boobies.getCards().get("upgrade")) {
 					int len = boobies.getCards().get("upgrade").size();
@@ -302,28 +306,37 @@ public class GizmosPanel extends JPanel implements MouseListener {
 					g.drawImage(c.getImage(), 1660, len*35 + 95 + 300 * i, 100, 100, null);
 				}
 			}
-			
+
 			// state = 1 buttons for the player to click
 			if (state == 1) {
 				g.setColor(Color.blue);
-				g.fillOval(762, 420, 90, 49);//res
 				g.fillOval(641, 420, 90, 49);//build
+				g.fillOval(762, 420, 90, 49);//res
 				g.fillOval(500, 420, 90, 49);//pick
 				g.fillOval(348, 420, 90, 49);//file
-				
+
 				g.setColor(Color.white);
 				g.drawString("Click", 782, 450);
 				g.drawString("Click", 661, 450);
 				g.drawString("Click", 520, 450);
 				g.drawString("Click", 368, 450);
-				
+
 			}
-			
+			else if(state==10){
+//draw two choices
+				g.setColor(Color.blue);
+				g.fillOval(780, 300, 120, 49);
+				g.fillOval(915, 300, 120, 49);
+				g.setColor(Color.white);
+				g.drawString("From Board", 790, 330);
+				g.drawString("From Archive", 910, 330);
+				state = 40;
+			}
 			else if (state == 69){ // RESEARCH panel pops up
 				g.setColor(Color.GRAY);
 				g.fillRect(800,850,1100,150);
 				tempcard = board.get(restier);
-				
+
 				int ind = 5 - restier; //  index of card arraylist that player sees
 				for (int i = 0; i<players[turn].getResearchLimit(); i++){
 					Card resc = tempcard.get(ind);
@@ -337,14 +350,14 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				chosen =tempcard.get(5 - restier + clickCar); // need to check this if there is a bug
 
 				tempcard.remove(5 - restier + clickCar);
-				List<Card> Rem = tempcard.subList(0, players[turn].getResearchLimit()); 
+				List<Card> Rem = tempcard.subList(0, players[turn].getResearchLimit());
 				tempcard.addAll(Rem);
 				for(int i=5 - restier; i<players[turn].getResearchLimit()-1; i++){
 					tempcard.remove(0);
 				}
 				board.put(restier,tempcard);
 				state = 74;
-				
+
 			}
 			else if(state ==74){ // these buttons, the player uses to choose to build or file after research.
 				g.fillOval(641, 420, 90, 49);//build
@@ -352,10 +365,6 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				g.drawString("Click", 661, 450);
 				g.drawString("Click", 368, 450);
 			}
-
-			
-			
-			// DRAW current players MARBLEs in their ENGERY RING in a 4x4 square
 			int ind = 0;
 			for (Marble m : players[turn].getMarbles()) {
 				g.drawImage(m.getImage(), 898 + 27 * (ind%4), 425 + 27 * (ind/4), 25, 25, null);
@@ -394,6 +403,19 @@ public class GizmosPanel extends JPanel implements MouseListener {
 			}
 			else if (x >= 762 && x <= 852 && y >= 420 && y <= 469) { // research button
 				state = 72;
+			}
+		}
+		else if (state ==40){
+			//choose to build from board or arhive
+//			g.fillOval(780, 300, 120, 49);
+//			g.fillOval(915, 300, 120, 49);
+			if(x>780&&x<900&&y>300&&y<350){
+				state =11;
+			}
+			else if(x>915&&x<930&&y>300&&y<250){
+				if(players[turn].getArchive().size()>0){
+					state =101;
+				}
 			}
 		}
 		// g.drawImage(tier3Cover, 10, 10,130,130,null); // drawing the cards on the board
