@@ -15,6 +15,8 @@ public class GizmosPanel extends JPanel implements MouseListener {
 	private Player[] players;
 	private int turn; // 1, 2, 3, or 4.
 	
+	private String message = ""; // this will be displayed to help user know what to do.
+	
 	private int restier;// for research tier -dev
 	private int clickCar; //research purposes
 	private Card chosen; // chosen card to file or build in the RESEARCH options
@@ -323,14 +325,14 @@ public class GizmosPanel extends JPanel implements MouseListener {
 
 			}
 			else if(state==10){
-//draw two choices
+				//draw two choices
 				g.setColor(Color.blue);
-				g.fillOval(780, 300, 120, 49);
-				g.fillOval(915, 300, 120, 49);
+				g.fillOval(780, 300, 120, 49); // from board
+				g.fillOval(915, 300, 120, 49); // from archive
 				g.setColor(Color.white);
 				g.drawString("From Board", 790, 330);
 				g.drawString("From Archive", 910, 330);
-				state = 40;
+				
 			}
 			else if (state == 69){ // RESEARCH panel pops up
 				g.setColor(Color.GRAY);
@@ -547,6 +549,8 @@ public class GizmosPanel extends JPanel implements MouseListener {
 					}
 				}
 			}
+			
+			
 		}
 		else if(state ==74){
 
@@ -558,8 +562,42 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				state = 76;
 			}
 		}
-
-
+		
+		else if (state == 10) {
+			if (x>780&&x<900&&y>300&&y<349) {
+				state = 40; // Now, player can pick card from BOARD to BUILD.
+			}
+			else if (x>915&&x<1035&&y>300&&y<349) {
+				state = 41; // Now, player can pick card from ARCHIVE to BUILD.
+			}
+		}
+		
+		else if (state== 40) { // builds from BOARD. NOT FINISHED YET.
+			for (int i = 0; i < 4; i++) { // tier 1 cards
+				Card c = board.get(1).get(i);
+				if (x >= c.getX() && x <= c.getX() + 130 && y >= c.getY() && y <= c.getY() + 130) {
+					
+				}
+			}
+			
+			for (int i = 0; i < 3; i++) { // tier 2 cards
+				Card c = board.get(2).get(i);
+				if (x >= c.getX() && x <= c.getX() + 130 && y >= c.getY() && y <= c.getY() + 130) {
+					
+				}
+			}
+			
+			for (int i = 0; i < 2; i++) { // tier 3 cards
+				Card c = board.get(3).get(i);
+				if (x >= c.getX() && x <= c.getX() + 130 && y >= c.getY() && y <= c.getY() + 130) {
+					
+				}
+			}
+		}
+		
+		else if (state == 41) { // builds from ARCHIVE
+			
+		}
 		//research
 		
 		repaint();
