@@ -382,6 +382,26 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				g.drawString("Click", 661, 450);
 				g.drawString("Click", 368, 450);
 			}
+			else if (state ==75){
+				cardToBuild = chosen; // these 3 PIVs are reset efvery time state = 40
+				toBuildTier = chosen.getTier();
+				toBuildIndex = -1;
+
+				if (pay()) {
+					state = 1;
+					turn++;
+					if (turn == 5) {
+						turn = 1;
+					}
+				}
+				else {
+					state = 1;
+				}
+
+				cardToBuild = null;
+				toBuildTier = -1;
+				toBuildIndex = -1;
+			}
 			
 			int ind = 0;
 			for (Marble m : players[turn].getMarbles()) {
@@ -659,6 +679,7 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				}
 			}
 		}
+
 		//research
 		
 		repaint();
