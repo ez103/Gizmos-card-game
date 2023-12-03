@@ -108,5 +108,32 @@ public class Card {
 	public BufferedImage getImage() {
 		return image;
 	}
+	
+	
+	// OVERRIDDEN METHODS so that java doesnt shit itself
+	public void setConverterA(String startColor, boolean performOnTwo) {
+		
+	}
+	
+	public void setConverterB(String startColor) {
+		
+	}
+	public void setColorB(String color) {
+		
+	}
+	
+	public String getStartColor() {
+		return "inheritence";
+	}
+	public String getColorB() {
+		return "inheritacne";
+	}
+	
+	public boolean isConverterB() {
+		return false;
+	}
+	public boolean isPerformOnTwo() {
+		return false;
+	}
 
 }

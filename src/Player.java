@@ -94,6 +94,18 @@ public class Player {
 	public ArrayList<Marble> getMarbles() {
 		return marbles;
 	}
+	public int numMarbles(String co) {
+		int count = 0;
+		for (Marble m : marbles) {
+			if (m.getColor().equals(co)) {
+				count++;
+			}
+		}
+		return count;
+	}
+	public void removeMarble(int i) {
+		marbles.remove(i);
+	}
 
 	public void increaseMarbleLimit(int n) {
 		marbleLimit += n;

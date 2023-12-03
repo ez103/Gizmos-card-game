@@ -21,6 +21,10 @@ public class GizmosPanel extends JPanel implements MouseListener {
 	private int clickCar; //research purposes
 	private Card chosen; // chosen card to file or build in the RESEARCH options
 	
+	private Card cardToBuild; // try to build this card.
+	private int toBuildTier;
+	private int toBuildIndex;
+	
 	private boolean startScreen = true;
 	private ArrayList<Card> tempcard;
 
@@ -181,30 +185,35 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				g.drawImage(greyBelt, 10, 460, 850,100,null);
 			}
 			g.drawImage(energyRing, 870, 400,175,175,null);
+			int joe = 1;
 			g.drawString("Player " + turn + ": ",10,440); // Current player. CARDS
 			for (Card c : players[turn].getCards().get("upgrade")) {
-				int len = players[turn].getCards().get("upgrade").size();
-				g.drawImage(c.getImage(), 20, len * 35 + 535, 130, 130, null);
+				g.drawImage(c.getImage(), 20, joe * 35 + 535, 130, 130, null);
+				joe++;
 			}
+			joe = 1;
 			g.drawString("Player " + turn + ": ",10,440); // Current player.
 			for (Card c : players[turn].getCards().get("converter")) {
-				int len = players[turn].getCards().get("converter").size();
-				g.drawImage(c.getImage(), 175, len * 35 + 535, 130, 130, null);
+				g.drawImage(c.getImage(), 175, joe * 35 + 535, 130, 130, null);
+				joe++;
 			}
+			joe = 1;
 			g.drawString("Player " + turn + ": ",10,440); // Current player.
 			for (Card c : players[turn].getCards().get("file")) {
-				int len = players[turn].getCards().get("file").size();
-				g.drawImage(c.getImage(), 330, len * 35 + 535, 130, 130, null);
+				g.drawImage(c.getImage(), 330, joe * 35 + 535, 130, 130, null);
+				joe++;
 			}
+			joe = 1;
 			g.drawString("Player " + turn + ": ",10,440); // Current player.
 			for (Card c : players[turn].getCards().get("pick")) {
-				int len = players[turn].getCards().get("pick").size();
-				g.drawImage(c.getImage(), 485, len * 35 + 535, 130, 130, null);
+				g.drawImage(c.getImage(), 485, joe * 35 + 535, 130, 130, null);
+				joe++;
 			}
+			joe = 1;
 			g.drawString("Player " + turn + ": ",10,440); // Current player.
 			for (Card c : players[turn].getCards().get("build")) {
-				int len = players[turn].getCards().get("build").size();
-				g.drawImage(c.getImage(), 640, len * 35 + 535, 130, 130, null);
+				g.drawImage(c.getImage(), 640, joe * 35 + 535, 130, 130, null);
+				joe++;
 			}
 			
 			// draw the archived cards of a player
@@ -275,7 +284,7 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				if (i == 0) {
 					boobies = players[turn2];
 				}
-				else if (i == 2) {
+				else if (i == 1) {
 					boobies = players[turn3];
 				}
 				else {
@@ -283,29 +292,34 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				}
 
 				g.drawString("Player " + turn + ": ",10,440); // side player
+				int len = 1;
 				for (Card c : boobies.getCards().get("upgrade")) {
-					int len = boobies.getCards().get("upgrade").size();
-					g.drawImage(c.getImage(), 1100, len*35 + 95 + 300 * i, 100, 100, null);
+					g.drawImage(c.getImage(), 1100, len*25 + 95 + 300 * i, 100, 100, null);
+					len++;
 				}
+				len = 1;
 				g.drawString("Player " + turn + ": ",10,440); // side player.
 				for (Card c : boobies.getCards().get("converter")) {
-					int len = boobies.getCards().get("converter").size();
-					g.drawImage(c.getImage(), 1240, len*35 + 95 + 300 * i, 100, 100, null);
+					g.drawImage(c.getImage(), 1240, len*25 + 95 + 300 * i, 100, 100, null);
+					len++;
 				}
+				len = 1;
 				g.drawString("Player " + turn + ": ",10,440); // side player.
 				for (Card c : boobies.getCards().get("file")) {
-					int len = boobies.getCards().get("file").size();
-					g.drawImage(c.getImage(), 1380, len*35 + 95 + 300 * i, 100, 100, null);
+					g.drawImage(c.getImage(), 1380, len*25 + 95 + 300 * i, 100, 100, null);
+					len++;
 				}
+				len = 1;
 				g.drawString("Player " + turn + ": ",10,440); // side player.
 				for (Card c : boobies.getCards().get("pick")) {
-					int len = boobies.getCards().get("pick").size();
-					g.drawImage(c.getImage(), 1520, len*35 + 95 + 300 * i, 100, 100, null);
+					g.drawImage(c.getImage(), 1520, len*25 + 95 + 300 * i, 100, 100, null);
+					len++;
 				}
+				len = 1;
 				g.drawString("Player " + turn + ": ",10,440); // side player.
 				for (Card c : boobies.getCards().get("build")) {
-					int len = boobies.getCards().get("build").size();
-					g.drawImage(c.getImage(), 1660, len*35 + 95 + 300 * i, 100, 100, null);
+					g.drawImage(c.getImage(), 1660, len*25 + 95 + 300 * i, 100, 100, null);
+					len++;
 				}
 			}
 
@@ -367,6 +381,7 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				g.drawString("Click", 661, 450);
 				g.drawString("Click", 368, 450);
 			}
+			
 			int ind = 0;
 			for (Marble m : players[turn].getMarbles()) {
 				g.drawImage(m.getImage(), 898 + 27 * (ind%4), 425 + 27 * (ind/4), 25, 25, null);
@@ -407,19 +422,19 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				state = 72;
 			}
 		}
-		else if (state ==40){
-			//choose to build from board or arhive
-//			g.fillOval(780, 300, 120, 49);
-//			g.fillOval(915, 300, 120, 49);
-			if(x>780&&x<900&&y>300&&y<350){
-				state =11;
-			}
-			else if(x>915&&x<930&&y>300&&y<250){
-				if(players[turn].getArchive().size()>0){
-					state =101;
-				}
-			}
-		}
+//		else if (state ==40){
+//			//choose to build from board or arhive
+////			g.fillOval(780, 300, 120, 49);
+////			g.fillOval(915, 300, 120, 49);
+//			if(x>780&&x<900&&y>300&&y<350){
+//				state =11;
+//			}
+//			else if(x>915&&x<930&&y>300&&y<250){
+//				if(players[turn].getArchive().size()>0){
+//					state =101;
+//				}
+//			}
+//		}
 		// g.drawImage(tier3Cover, 10, 10,130,130,null); // drawing the cards on the board
 
 		// 				g.drawImage(tier2Cover, 10, 150,130,130,null);
@@ -573,24 +588,45 @@ public class GizmosPanel extends JPanel implements MouseListener {
 		}
 		
 		else if (state== 40) { // builds from BOARD. NOT FINISHED YET.
+			cardToBuild = null; // these 3 PIVs are reset efvery time state = 40
+			toBuildTier = -1;
+			toBuildIndex = -1;
+			
 			for (int i = 0; i < 4; i++) { // tier 1 cards
 				Card c = board.get(1).get(i);
 				if (x >= c.getX() && x <= c.getX() + 130 && y >= c.getY() && y <= c.getY() + 130) {
-					
+					cardToBuild = c;
+					toBuildTier = c.getTier();
+					toBuildIndex = i;
 				}
 			}
-			
 			for (int i = 0; i < 3; i++) { // tier 2 cards
 				Card c = board.get(2).get(i);
 				if (x >= c.getX() && x <= c.getX() + 130 && y >= c.getY() && y <= c.getY() + 130) {
-					
+					cardToBuild = c;
+					toBuildTier = c.getTier();
+					toBuildIndex = i;
 				}
 			}
-			
 			for (int i = 0; i < 2; i++) { // tier 3 cards
 				Card c = board.get(3).get(i);
 				if (x >= c.getX() && x <= c.getX() + 130 && y >= c.getY() && y <= c.getY() + 130) {
-					
+					cardToBuild = c;
+					toBuildTier = c.getTier();
+					toBuildIndex = i;
+				}
+			}
+			
+			if (!(cardToBuild == null)) { // if paoyer ac5tually clicked on one of the cards
+				if (pay()) { // if paid fully
+					state = 1;
+					turn++;
+					if (turn == 5) {
+						turn = 1;
+					}
+				}
+				else { // cannot pay, try another action
+					state = 1;
 				}
 			}
 		}
@@ -636,6 +672,48 @@ public class GizmosPanel extends JPanel implements MouseListener {
 			
 		}
 	}
+	
+	public boolean pay() { // for BUILDING. if has enough, then return true and pay it and move the next player. if not enough marbles, then return false.
+		String color = cardToBuild.getCostColor();
+		int needToPay = cardToBuild.getCost();
+		
+		ArrayList<Marble> pmarbles = players[turn].getMarbles();
+		
+		needToPay -= players[turn].numMarbles(color); 
+		
+		if (needToPay <= 0) {
+			int paid = 0;
+			for (int i = players[turn].getMarbles().size()-1; i >= 0; i--) {
+				Marble m = players[turn].getMarbles().get(i);
+				if (m.getColor().equals(color)) {
+					paid++;
+					players[turn].removeMarble(i);
+					marbles.add((int)((marbles.size() - 10) * Math.random()) + 8, m);
+				}
+				if (paid == cardToBuild.getCost()) {
+					break;
+				}
+			}
+			
+			board.get(toBuildTier).remove(toBuildIndex);
+			players[turn].addCard(cardToBuild);
+			return true;
+		}
+		
+		for (Card c : players[turn].getCards().get("converter")) {
+			// use the converters to convert other marbles 
+			if (c.isConverterB()) {
+				if (c.getStartColor().equals(color)) {
+					needToPay -= players[turn].numMarbles(color);
+				}
+				else if (c.getColorB().equals(color)) {
+					needToPay -= players[turn].numMarbles(color);
+				}
+			}
+		}
+		return false;
+	}
+	
 }
 
 

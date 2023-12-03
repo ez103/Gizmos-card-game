@@ -1,7 +1,7 @@
 import java.awt.image.BufferedImage;
 
 public class ConverterCard extends Card {
-	private String startColor; // converter type A. Starting color that may be converted into any other color. 
+	private String startColor;
 	private String colorB = "";
 	private boolean performOnTwo; // converter type A. This tells if we can convert 2 marbles or 1 marble.
 	private boolean doubleIt; // true = converter type B, false = converter type A. Converter B allows to double as many marbles as you want.
@@ -26,6 +26,13 @@ public class ConverterCard extends Card {
 	}
 	public void setColorB(String color) {
 		colorB = color;
+	}
+	
+	public String getStartColor() {
+		return startColor;
+	}
+	public String getColorB() {
+		return colorB;
 	}
 	
 	public boolean isConverterB() {
