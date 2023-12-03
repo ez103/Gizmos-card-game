@@ -222,6 +222,7 @@ public class GizmosPanel extends JPanel implements MouseListener {
 			int eric = 0;
 			for (Card c : players[turn].getArchive()) {
 				g.drawImage(c.getImage(), 790 + (eric/3)*100, 610 + 110 * (eric%3), 100, 100, null);
+				c.setLocation(790 + (eric/3)*100, 610 + 110 * (eric%3));
 				eric++;
 			}
 			
@@ -587,7 +588,7 @@ public class GizmosPanel extends JPanel implements MouseListener {
 			}
 		}
 		
-		else if (state== 40) { // builds from BOARD. NOT FINISHED YET.
+		else if (state== 40) { // builds from BOARD.
 			cardToBuild = null; // these 3 PIVs are reset efvery time state = 40
 			toBuildTier = -1;
 			toBuildIndex = -1;
@@ -632,7 +633,31 @@ public class GizmosPanel extends JPanel implements MouseListener {
 		}
 		
 		else if (state == 41) { // builds from ARCHIVE
+			cardToBuild = null; // these 3 PIVs are reset efvery time state = 40
+			toBuildTier = -1;
+			toBuildIndex = -1;
 			
+			for (int i = 0; i < players[turn].getArchive().size(); i++) {
+				Card bust = players[turn].getArchive().get(i);
+				if (x >= bust.getX() && x <= bust.getX() + 100 && y >= bust.getY() && y <= bust.getY() + 100) {
+					cardToBuild = bust;
+					toBuildTier = bust.getTier();
+					toBuildIndex = i;
+				}
+			}
+			
+			if (!(cardToBuild == null)) {
+				if (pay()) { // if paid fully
+					state = 1;
+					turn++;
+					if (turn == 5) {
+						turn = 1;
+					}
+				}
+				else { // cannot pay, try another action
+					state = 1;
+				}
+			}
 		}
 		//research
 		
@@ -695,23 +720,98 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				}
 			}
 			
-			board.get(toBuildTier).remove(toBuildIndex);
+			if (state == 40) { // built from board
+				board.get(toBuildTier).remove(toBuildIndex);
+			}
+			else if (state == 41) { // built from archive
+				players[turn].getArchive().remove(toBuildIndex);
+			}
 			players[turn].addCard(cardToBuild);
 			return true;
 		}
 		
+		// this is a little iffy, need to test this when we have more time.
+		int nonColor = players[turn].getMarbles().size() - players[turn].numMarbles(color);
+		int potential = 0;
+		int numDoublers = 0;
 		for (Card c : players[turn].getCards().get("converter")) {
 			// use the converters to convert other marbles 
 			if (c.isConverterB()) {
 				if (c.getStartColor().equals(color)) {
 					needToPay -= players[turn].numMarbles(color);
+					numDoublers++;
 				}
 				else if (c.getColorB().equals(color)) {
 					needToPay -= players[turn].numMarbles(color);
+					numDoublers++;
+				}
+			}
+			else {
+				if (!c.getStartColor().equals(color) && c.isPerformOnTwo()) { // convert 2 cards
+					potential += 2;
+					needToPay -= 2;
+				}
+				else if (!c.getStartColor().equals(color) && !c.isPerformOnTwo()) { // only convert 1 card
+					potential++;
+					needToPay--;
 				}
 			}
 		}
-		return false;
+		
+		if (needToPay > 0) { // not enough to pay
+			return false;
+		}
+		else { // paying now, returning true,
+			int paid = 0;
+			for (int i = players[turn].getMarbles().size()-1; i >= 0; i--) {
+				Marble m = players[turn].getMarbles().get(i);
+				if (m.getColor().equals(color)) {
+					paid++;
+					players[turn].removeMarble(i);
+					marbles.add((int)((marbles.size() - 10) * Math.random()) + 8, m);
+				}
+				if (paid == cardToBuild.getCost()) {
+					break;
+				}
+			}
+			
+			if (paid < cardToBuild.getCost()) {
+				if (numDoublers >= 1) {
+					paid *= 2;
+				}
+				if (numDoublers >= 2) {
+					paid *= 2;
+				}
+				if (numDoublers >= 3) {
+					paid *= 2;
+				}
+				if (numDoublers >= 4) {
+					paid *= 2;
+				}
+				if (numDoublers >= 5) {
+					paid *= 2;
+				}
+			}
+			
+			if (paid < cardToBuild.getCost()) {
+				for (int i = players[turn].getMarbles().size()-1; i >= 0; i--) {
+					players[turn].getMarbles().remove(i);
+					paid++;
+					if (paid == cardToBuild.getCost()) {
+						break;
+					}
+				}
+			}
+			
+			if (state == 40) { // built from board
+				board.get(toBuildTier).remove(toBuildIndex);
+			}
+			else if (state == 41) { // built from archive
+				players[turn].getArchive().remove(toBuildIndex);
+			}
+			players[turn].addCard(cardToBuild);
+			return true;
+		}
 	}
 	
 }
