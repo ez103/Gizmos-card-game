@@ -21,7 +21,9 @@ public class Player {
 	private int researchLimit;
 	private int x;
 	private int y;
-	
+
+	private int t3;
+	private int tot;
 	private boolean canFile = true, canResearch = true; // if player is allowed to do these actions or not - they can be negated by certain cards.
 	
 	public Player(int n) {
@@ -50,7 +52,82 @@ public class Player {
 		researchLimit = 3;
 		
 	}
-	
+	public int Vpoints(){
+		int ret = o;
+		ArrayList<Card> up= belt.get("upgrade");
+		ArrayList<Card> fil= belt.get("file");
+		ArrayList<Card> bu= belt.get("build");
+		ArrayList<Card> pi= belt.get("pick");
+		ArrayList<Card> con= belt.get("converter");
+		for(int i =0;i<up.size();i++){
+			ret = ret +up.get(i).getCardVictoryPoints();
+		}
+		for(int i =0;i<fil.size();i++){
+			ret = ret +fil.get(i).getCardVictoryPoints();
+
+		}
+		for(int i =0;i<bu.size();i++){
+			ret = ret +bu.get(i).getCardVictoryPoints();
+
+
+		}
+		for(int i =0;i<pi.size();i++){
+			ret = ret +pi.get(i).getCardVictoryPoints();
+
+
+		}
+		for(int i =0;i<con.size();i++){
+			ret = ret +con.get(i).getCardVictoryPoints();
+
+
+		}
+		return ret;
+	}
+	public boolean isDone(){
+		int tret = 0;//total cards
+		int three=0; // lvl3 cards
+		ArrayList<Card> up= belt.get("upgrade");
+		ArrayList<Card> fil= belt.get("file");
+		ArrayList<Card> bu= belt.get("build");
+		ArrayList<Card> pi= belt.get("pick");
+		ArrayList<Card> con= belt.get("converter");
+		for(int i =0;i<up.size();i++){
+			tret++;
+			if(up.get(i).getTier()==3){
+				three++;
+			}
+
+		}
+		for(int i =0;i<fil.size();i++){
+			tret++;
+			if(fil.get(i).getTier()==3){
+				three++;
+			}
+
+		}
+		for(int i =0;i<bu.size();i++){
+			tret++;
+			if(bu.get(i).getTier()==3){
+				three++;
+			}
+
+		}
+		for(int i =0;i<pi.size();i++){
+			tret++;
+			if(pi.get(i).getTier()==3){
+				three++;
+			}
+
+		}
+		for(int i =0;i<con.size();i++){
+			tret++;
+			if(con.get(i).getTier()==3){
+				three++;
+			}
+
+		}
+		return tret>=16||three>=3;
+	}
 	public void addCard(Card c) {
 		belt.get(c.getCategory()).add(c);
 	}

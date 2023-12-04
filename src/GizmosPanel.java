@@ -4,6 +4,8 @@ import java.awt.*;
 import java.awt.image.*;
 import java.awt.event.*;
 import java.awt.Window;
+import java.util.Collections;
+
 
 import java.io.*;
 import java.util.*;
@@ -122,20 +124,20 @@ public class GizmosPanel extends JPanel implements MouseListener {
 	
 	public void paint(Graphics g) {
 		super.paint(g);
-		
+
 		if (startScreen) {
 			g.drawImage(startBg, 0, 0, 1900, 1000, null);
 
 			g.drawImage(startButton, 1550, 630, 350, 350, null);
 		}
 		if(!startScreen){
-			
+			if(checkT()){
 			g.drawImage(background, 0, 0,1900,1000,null);
-			
-			
+
+
 			//for (players.turn[].getCards().get(""))
-			
-			
+
+
 			g.drawImage(chest, 650, 15,120,90,null);
 			g.drawImage(marbles.get(5).getImage(), 780, 35,40,40,null);
 			marbles.get(5).setLocation(780, 35);
@@ -149,8 +151,8 @@ public class GizmosPanel extends JPanel implements MouseListener {
 			marbles.get(1).setLocation(960, 35);
 			g.drawImage(marbles.get(0).getImage(), 1005, 35,40,40,null);
 			marbles.get(0).setLocation(1005, 35);
-			
-			
+
+
 			g.drawImage(tier3Cover, 10, 10,130,130,null); // drawing the cards on the board
 			g.drawImage(board.get(3).get(0).getImage(), 160, 10,130,130,null);
 			board.get(3).get(0).setLocation(160, 10);
@@ -174,10 +176,10 @@ public class GizmosPanel extends JPanel implements MouseListener {
 			board.get(1).get(2).setLocation(440, 290);
 			g.drawImage(board.get(1).get(3).getImage(), 580, 290,130,130,null);
 			board.get(1).get(3).setLocation(580, 290);
-			
+
 			g.setFont(new Font("Dialog", Font.BOLD, 20));
 
-			
+
 			if (turn == 1) { // IF current player is PLAYER 1
 				g.drawImage(brownBelt, 10, 460, 850,100,null);
 			}
@@ -215,7 +217,7 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				g.drawImage(c.getImage(), 640, joe * 35 + 535, 130, 130, null);
 				joe++;
 			}
-			
+
 			// draw the archived cards of a player
 			g.setFont(new Font("Cambria", Font.BOLD, 27));
 			g.drawString("Cards in Archive: ", 760, 600);
@@ -225,9 +227,9 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				c.setLocation(790 + (eric/3)*100, 610 + 110 * (eric%3));
 				eric++;
 			}
-			
+
 			g.setFont(new Font("Dialog", Font.BOLD, 20));
-			
+
 			int turn2 = 0; // the player whos turn is direcly after; one turn away
 			if (turn%4 == 3) {
 				g.drawString("Player " + 4 + ": " ,1075,25);
@@ -243,7 +245,7 @@ public class GizmosPanel extends JPanel implements MouseListener {
 			else {
 				g.drawImage(greyBelt, 1075, 40, 800,80,null);
 			}
-			
+
 			int turn3 = 0; // two turns away
 			if (turn%4 == 2) {
 				g.drawString("Player " + 4 + ": " ,1075,325);
@@ -259,7 +261,7 @@ public class GizmosPanel extends JPanel implements MouseListener {
 			else {
 				g.drawImage(greyBelt, 1075, 340, 800,80,null);
 			}
-			
+
 			int turn4 = 0; // three turns away
 			if (turn%4 == 1) {
 				g.drawString("Player " + 4 + ": " ,1075,625);
@@ -271,7 +273,7 @@ public class GizmosPanel extends JPanel implements MouseListener {
 			}
 			if (turn4 == 1) {
 				g.drawImage(brownBelt, 1075, 640, 800,80,null);
-			} 
+			}
 			else {
 				g.drawImage(greyBelt, 1075, 640, 800,80,null);
 			}
@@ -347,7 +349,7 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				g.setColor(Color.white);
 				g.drawString("From Board", 790, 330);
 				g.drawString("From Archive", 910, 330);
-				
+
 			}
 			else if (state == 69){ // RESEARCH panel pops up
 				g.setColor(Color.GRAY);
@@ -402,17 +404,57 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				toBuildTier = -1;
 				toBuildIndex = -1;
 			}
-			
+
 			int ind = 0;
 			for (Marble m : players[turn].getMarbles()) {
 				g.drawImage(m.getImage(), 898 + 27 * (ind%4), 425 + 27 * (ind/4), 25, 25, null);
 				ind++;
 			}
-			
-			
-		} 
+
+
+		}
+			else{
+				ArrayList<score> win = getWinner();
+				int p1 = win.get(0).gN();
+				int p2 = win.get(1).gN();
+				int p3 = win.get(2).gN();
+				int p4 = win.get(3).gN();
+				g.setColor(Color.BLACK);
+				g.setFont(new Font("Dialog", Font.BOLD, 20));
+
+				g.drawString("Winner : player "+p1,200,200);
+				g.drawString("2nd : player "+p2,200,300);
+				g.drawString("3rd : player "+p3,200,400);
+				g.drawString("4th : player "+p4,200,500);
+
+
+
+			}
+		}
+
 	}
-	
+	public ArrayList<score> getWinner(){
+		ArrayList<Integer> tell = new ArrayList<Integer>();
+		int p1s = players[1].Vpoints();
+		int p2s = players[2].Vpoints();
+		int p3s = players[3].Vpoints();
+		int p4s = players[4].Vpoints();
+		score p1 = new score(1,p1s);
+		score p2 = new score(1,p2s);
+		score p3 = new score(1,p3s);
+		score p4 = new score(1,p4s);
+
+		tell.add(p1s);
+		tell.add(p2s);
+		tell.add(p3s);
+		tell.add(p4s);
+		ArrayList<score> scoreList = new ArrayList<>();
+		scoreList.add(p1);
+		scoreList.add(p2);
+		scoreList.add(p3);
+		scoreList.add(p4);
+		return scoreList;
+	}
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
@@ -684,8 +726,16 @@ public class GizmosPanel extends JPanel implements MouseListener {
 		
 		repaint();
 	}
+//check if all player
+public void boolean checkT(){
+for(int i =1;i< 5;i++){
+	if (players[i].isDone()){
+		return false;
+	}
+	}
+return true;
 
-
+	}
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
