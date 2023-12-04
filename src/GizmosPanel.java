@@ -1010,8 +1010,8 @@ public class GizmosPanel extends JPanel implements MouseListener {
 		}
 	}
 	public void builtChain(Card c) {
-		players[turn].increasePlayerVp(c.getPlayerVictoryPoints());
-		System.out.println(c.getPlayerVictoryPoints());
+		players[turn].increasePlayerVp(c.getPlayerVp());
+		System.out.println(c.getPlayerVp());
 	}
 }
 

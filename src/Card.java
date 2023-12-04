@@ -154,7 +154,7 @@ public class Card {
 		return 0;
 	}
 
-	public int getPlayerVictoryPoints() {
+	public int getPlayerVp() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
