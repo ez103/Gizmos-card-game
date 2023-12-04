@@ -46,4 +46,8 @@ public class BuildCard extends Card {
 	public void addBuiltColor(String color) {
 		builtColors.add(color);
 	}
+	
+	public int getPlayerVp() {
+		return playerVictoryPoints;
+	}
 }

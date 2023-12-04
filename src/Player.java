@@ -164,6 +164,12 @@ public class Player {
 
 		return sum;
 	}
+	public void increasePlayerVp(int n) {
+		playerVictoryPoints += n;
+	}
+	public int getPlayerVp() {
+		return playerVictoryPoints;
+	}
 	
 	public void addMarble(Marble m) {
 		marbles.add(m);

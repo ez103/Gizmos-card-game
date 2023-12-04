@@ -192,7 +192,7 @@ public class GizmosPanel extends JPanel implements MouseListener {
 			}
 			g.drawImage(energyRing, 870, 400,175,175,null);
 			int joe = 1;
-			g.drawString("Player " + turn + ": ",10,440); // Current player. CARDS
+			g.drawString("Player " + turn + ":     " + "Bonus Victory Point Tokens: " + players[turn].getPlayerVp(),10,440); // Current player. CARDS
 			for (Card c : players[turn].getCards().get("upgrade")) {
 				g.drawImage(c.getImage(), 20, joe * 35 + 535, 130, 130, null);
 				joe++;
@@ -626,7 +626,7 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				state = 1;
 			}
 			else { // OVER FILE LIMIT. maybe add an error message later.
-				state = 73; // player must choose a card again, then choose whether to
+				state = 1; // player must choose a card again, then choose whether to
 			}
 		}
 		
@@ -904,6 +904,7 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				players[turn].getArchive().remove(toBuildIndex);
 			}
 			players[turn].addCard(cardToBuild);
+			builtChain(cardToBuild);
 			return true;
 		}
 		
@@ -986,6 +987,7 @@ public class GizmosPanel extends JPanel implements MouseListener {
 			else if (state == 41) { // built from archive
 				players[turn].getArchive().remove(toBuildIndex);
 			}
+			builtChain(cardToBuild);
 			players[turn].addCard(cardToBuild);
 			return true;
 		}
@@ -1006,6 +1008,10 @@ public class GizmosPanel extends JPanel implements MouseListener {
 		if (numRandom > 0) {
 			state = 31;
 		}
+	}
+	public void builtChain(Card c) {
+		players[turn].increasePlayerVp(c.getPlayerVictoryPoints());
+		System.out.println(c.getPlayerVictoryPoints());
 	}
 }
 
