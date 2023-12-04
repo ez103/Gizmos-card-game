@@ -29,6 +29,8 @@ public class GizmosPanel extends JPanel implements MouseListener {
 	
 	private boolean startScreen = true;
 	private ArrayList<Card> tempcard;
+	
+	private int numRandom = 0; // number of random marbles that can be drawn
 
 	private BufferedImage startBg, startButton, brownBelt, greyBelt;
 	private BufferedImage energyRing, yellowMarble, redMarble, blueMarble, blackMarble, chest;
@@ -95,6 +97,7 @@ public class GizmosPanel extends JPanel implements MouseListener {
     	shuffle(board.get(1), 0, board.get(1).size());
     	shuffle(board.get(2), 0, board.get(2).size());
     	shuffle(board.get(3), 0, board.get(3).size());
+    	shorten16(board.get(3));
     	
     	
     	marbles = new ArrayList<>();
@@ -134,7 +137,8 @@ public class GizmosPanel extends JPanel implements MouseListener {
 			if(checkT()){
 			g.drawImage(background, 0, 0,1900,1000,null);
 
-
+			
+			
 			//for (players.turn[].getCards().get(""))
 
 
@@ -325,9 +329,31 @@ public class GizmosPanel extends JPanel implements MouseListener {
 					len++;
 				}
 			}
-
+			
+			
+			// drawing a running LEADERBOARD
+			g.setColor(new Color(50, 205, 50));
+			g.fillRect(850,  100,  190, 290);
+			g.setColor(Color.black);
+			
+			g.setFont(new Font("Cambria", Font.BOLD, 21));
+			g.drawString("LEADERBOARD", 865, 135);
+			
+			g.setFont(new Font("Cambria", Font.PLAIN, 21));
+			g.drawString("Player 1:           " + players[1].getTotalVictoryPoints(), 860, 180);
+			g.drawString("Player 2:           " + players[2].getTotalVictoryPoints(), 860, 240);
+			g.drawString("Player 3:           " + players[3].getTotalVictoryPoints(), 860, 300);
+			g.drawString("Player 4:           " + players[4].getTotalVictoryPoints(), 860, 360);
+			
+			
+			g.setFont(new Font("Dialog", Font.BOLD, 20));
 			// state = 1 buttons for the player to click
 			if (state == 1) {
+				g.setColor(Color.black);
+				g.setFont(new Font("Dialog", Font.BOLD, 23));
+				g.drawString("Click on a blue button", 20, 935);
+				
+				g.setFont(new Font("Dialog", Font.BOLD, 20));
 				g.setColor(Color.blue);
 				g.fillOval(641, 420, 90, 49);//build
 				g.fillOval(762, 420, 90, 49);//res
@@ -341,8 +367,18 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				g.drawString("Click", 368, 450);
 
 			}
+			else if (state == 21) {
+				g.setColor(Color.black);
+				g.setFont(new Font("Dialog", Font.BOLD, 23));
+				g.drawString("Pick 1 marble from the 6 shown marbles", 20, 935);
+			}
 			else if(state==10){
+				g.setColor(Color.black);
+				g.setFont(new Font("Dialog", Font.BOLD, 23));
+				g.drawString("Click on a blue button", 20, 935);
+				
 				//draw two choices
+				g.setFont(new Font("Dialog", Font.BOLD, 20));
 				g.setColor(Color.blue);
 				g.fillOval(780, 300, 120, 49); // from board
 				g.fillOval(915, 300, 120, 49); // from archive
@@ -351,7 +387,30 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				g.drawString("From Archive", 910, 330);
 
 			}
+			else if (state == 11) {
+				g.setColor(Color.black);
+				g.setFont(new Font("Dialog", Font.BOLD, 23));
+				g.drawString("Select a card from the board to archive", 20, 935);
+			}
+			
+			
+			else if (state == 40) {
+				g.setColor(Color.black);
+				g.setFont(new Font("Dialog", Font.BOLD, 23));
+				g.drawString("Select a card from the board to build", 20, 935);
+			}
+			else if (state == 41) {
+				g.setColor(Color.black);
+				g.setFont(new Font("Dialog", Font.BOLD, 23));
+				g.drawString("Select a card from archive to build", 20, 935);
+			}
+			
 			else if (state == 69){ // RESEARCH panel pops up
+				
+				g.setColor(Color.black);
+				g.setFont(new Font("Dialog", Font.BOLD, 23));
+				g.drawString("Select a card from the research row", 20, 935);
+				
 				g.setColor(Color.GRAY);
 				g.fillRect(800,850,1100,150);
 				tempcard = board.get(restier);
@@ -365,52 +424,27 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				}
 				state = 73;
 			}
-			else if(state==70){ // player click on card, puts back into back of arraylist
-				chosen =tempcard.get(5 - restier + clickCar); // need to check this if there is a bug
-
-				tempcard.remove(5 - restier + clickCar);
-				List<Card> Rem = tempcard.subList(0, players[turn].getResearchLimit());
-				tempcard.addAll(Rem);
-				for(int i=5 - restier; i<players[turn].getResearchLimit()-1; i++){
-					tempcard.remove(0);
-				}
-				board.put(restier,tempcard);
-				state = 74;
-
-			}
 			else if(state ==74){ // these buttons, the player uses to choose to build or file after research.
+				g.setColor(Color.black);
+				g.setFont(new Font("Dialog", Font.BOLD, 23));
+				g.drawString("Click on a blue button", 20, 935);
+				
+				g.setFont(new Font("Dialog", Font.BOLD, 20));
+				g.setColor(Color.blue);
 				g.fillOval(641, 420, 90, 49);//build
 				g.fillOval(348, 420, 90, 49);//file
-				g.drawString("Click", 661, 450);
-				g.drawString("Click", 368, 450);
+				g.setColor(Color.white);
+				g.drawString("Click", 659, 450);
+				g.drawString("Click", 366, 450);
 			}
-			else if (state ==75){
-				cardToBuild = chosen; // these 3 PIVs are reset efvery time state = 40
-				toBuildTier = chosen.getTier();
-				toBuildIndex = -1;
-
-				if (pay()) {
-					state = 1;
-					turn++;
-					if (turn == 5) {
-						turn = 1;
-					}
-				}
-				else {
-					state = 1;
-				}
-
-				cardToBuild = null;
-				toBuildTier = -1;
-				toBuildIndex = -1;
-			}
+			
 
 			int ind = 0;
 			for (Marble m : players[turn].getMarbles()) {
 				g.drawImage(m.getImage(), 898 + 27 * (ind%4), 425 + 27 * (ind/4), 25, 25, null);
 				ind++;
 			}
-
+			
 
 		}
 			else{
@@ -472,6 +506,7 @@ public class GizmosPanel extends JPanel implements MouseListener {
 		}
 		
 		else if (state == 1) { // start of turn. player chooses which of the 4 actions to do
+			
 			if (x >= 348 && x <= 438 && y >= 420 && y <= 469) { // file button
 				state = 11;
 			}
@@ -503,6 +538,20 @@ public class GizmosPanel extends JPanel implements MouseListener {
 		// 				g.drawImage(tier2Cover, 10, 150,130,130,null);
 
 		// 	g.drawImage(tier1Cover, 10, 290,130,130,null);
+
+		else if(state==70){ // player click on card, puts back into back of arraylist
+			chosen =tempcard.get(5 - restier + clickCar); // need to check this if there is a bug
+
+			tempcard.remove(5 - restier + clickCar);
+			List<Card> Rem = tempcard.subList(0, players[turn].getResearchLimit());
+			tempcard.addAll(Rem);
+			for(int i=5 - restier; i<players[turn].getResearchLimit()-1; i++){
+				tempcard.remove(0);
+			}
+			board.put(restier,tempcard);
+			state = 74;
+
+		}
 		
 		else if(state==72){ // state=72 means player clicks on one of the tiers to choose which tier to research
 			if(x>10&&x<140&&y>290&&y<420){
@@ -531,6 +580,38 @@ public class GizmosPanel extends JPanel implements MouseListener {
 			state =70;
 		}
 		
+		else if(state ==74){
+
+			if(x>641&&x<730&&y>420&&y<470){
+				state = 75;
+				//fuck bitch then build
+			}
+			else if(x>348&&x<440&&y>420&&y<470){
+				state = 76;
+			}
+		}
+		
+		else if (state ==75){
+			cardToBuild = chosen; // these 3 PIVs are reset efvery time state = 40
+			toBuildTier = chosen.getTier();
+			toBuildIndex = clickCar;
+
+			if (pay()) {
+				state = 1;
+				turn++;
+				if (turn == 5) {
+					turn = 1;
+				}
+			}
+			else {
+				state = 1;
+			}
+
+			cardToBuild = null;
+			toBuildTier = -1;
+			toBuildIndex = -1;
+		}
+		
 		else if(state==76){
 //			if(players[turn].archiveCard(chosen)){
 //				players[turn].addCard(chosen);
@@ -557,6 +638,8 @@ public class GizmosPanel extends JPanel implements MouseListener {
 						marbles.remove(i);
 						players[turn].addMarble(temp);
 						
+						pickChain(temp.getColor());
+						
 						state = 1;
 						turn++;
 						if (turn == 5) {
@@ -570,6 +653,15 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				state = 1; // maybe also add an error message later
 			}
 			
+		}
+		
+		else if (state == 31) {
+			if (x >= 650 && x <= 770 && y >= 15 && y <= 105) {
+				for (int i = 0; i < numRandom; i++) {
+					Marble m = marbles.remove(marbles.size()-3);
+					players[turn].addMarble(m);
+				}
+			}
 		}
 
 		else if (state == 11) { // player chooses to do the FILE action
@@ -630,23 +722,19 @@ public class GizmosPanel extends JPanel implements MouseListener {
 			
 			
 		}
-		else if(state ==74){
-
-			if(x>641&&x<730&&y>420&&y<470){
-				state = 75;
-				//fuck bitch then build
-			}
-			else if(x>348&&x<440&&y>420&&y<470){
-				state = 76;
-			}
-		}
+		
 		
 		else if (state == 10) {
 			if (x>780&&x<900&&y>300&&y<349) {
 				state = 40; // Now, player can pick card from BOARD to BUILD.
 			}
 			else if (x>915&&x<1035&&y>300&&y<349) {
-				state = 41; // Now, player can pick card from ARCHIVE to BUILD.
+				if (players[turn].getArchive().size()==0) {
+					state = 1;
+				}
+				else {
+					state = 41; // Now, player can pick card from ARCHIVE to BUILD.
+				}
 			}
 		}
 		
@@ -682,6 +770,11 @@ public class GizmosPanel extends JPanel implements MouseListener {
 			
 			if (!(cardToBuild == null)) { // if paoyer ac5tually clicked on one of the cards
 				if (pay()) { // if paid fully
+					if (cardToBuild.getCategory().equals("upgrade")) {
+						players[turn].increaseFileLimit(cardToBuild.getFileIncrease());
+						players[turn].increaseMarbleLimit(cardToBuild.getMarbleIncrease());
+						players[turn].increaseResearchLimit(cardToBuild.getResearchIncrease());
+					}
 					state = 1;
 					turn++;
 					if (turn == 5) {
@@ -708,8 +801,15 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				}
 			}
 			
+			
 			if (!(cardToBuild == null)) {
 				if (pay()) { // if paid fully
+					if (cardToBuild.getCategory().equals("upgrade")) {
+						players[turn].increaseFileLimit(cardToBuild.getFileIncrease());
+						players[turn].increaseMarbleLimit(cardToBuild.getMarbleIncrease());
+						players[turn].increaseResearchLimit(cardToBuild.getResearchIncrease());
+					}
+					
 					state = 1;
 					turn++;
 					if (turn == 5) {
@@ -727,13 +827,13 @@ public class GizmosPanel extends JPanel implements MouseListener {
 		repaint();
 	}
 //check if all player
-public void boolean checkT(){
-for(int i =1;i< 5;i++){
-	if (players[i].isDone()){
-		return false;
-	}
-	}
-return true;
+	public  boolean checkT(){
+		for(int i =1;i< 5;i++){
+			if (players[i].isDone()){
+				return false; // game is not in play
+			}
+		}
+		return true; // game is in play
 
 	}
 	@Override
@@ -763,10 +863,16 @@ return true;
     }
 	
 	public static <T> void shorten16(ArrayList<T> list) {
-		shuffle(list, 0, list.size());
-		for (int i = 0; i < 16; i++) {
-			
+		ArrayList<T> temp = new ArrayList<>();
+		int ind = 0;
+		for (T c : list) {
+			temp.add(list.get(ind));
+			ind++;
+			if (ind == 16) {
+				break;
+			}
 		}
+		list = temp;
 	}
 	
 	public boolean pay() { // for BUILDING. if has enough, then return true and pay it and move the next player. if not enough marbles, then return false.
@@ -885,6 +991,22 @@ return true;
 		}
 	}
 	
+	public void fileChain(Card c) {
+		
+	}
+	public void pickChain(String color) {
+		numRandom = 0;
+		for (Card p : players[turn].getCards().get("pick")) {
+			for (String s: p.getPickedColors()) {
+				if (s.equals(color)) {
+					numRandom++;
+				}
+			}
+		}
+		if (numRandom > 0) {
+			state = 31;
+		}
+	}
 }
 
 

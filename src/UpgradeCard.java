@@ -60,4 +60,18 @@ public class UpgradeCard extends Card {
     		isVpPlayerVp = true;
     	}
     }
+    
+    public int getFileIncrease() {
+		return fileLimitIncrease;
+	}
+
+	public int getMarbleIncrease() {
+		// TODO Auto-generated method stub
+		return marbleLimitIncrease;
+	}
+
+	public int getResearchIncrease() {
+		// TODO Auto-generated method stub
+		return researchLimitIncrease;
+	}
 }

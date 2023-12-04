@@ -19,4 +19,8 @@ public class PickCard extends Card {
     public void addPickedColor(String color) { 
         pickedColors.add(color);
     }
+    
+    public ArrayList<String> getPickedColors() {
+    	return pickedColors;
+    }
 }

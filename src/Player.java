@@ -53,7 +53,7 @@ public class Player {
 		
 	}
 	public int Vpoints(){
-		int ret = o;
+		int ret = 0;
 		ArrayList<Card> up= belt.get("upgrade");
 		ArrayList<Card> fil= belt.get("file");
 		ArrayList<Card> bu= belt.get("build");

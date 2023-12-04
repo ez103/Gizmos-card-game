@@ -135,5 +135,22 @@ public class Card {
 	public boolean isPerformOnTwo() {
 		return false;
 	}
+	
+	public ArrayList<String> getPickedColors() {
+		return new ArrayList<String>();
+	}
 
+	public int getFileIncrease() {
+		return 0;
+	}
+
+	public int getMarbleIncrease() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public int getResearchIncrease() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

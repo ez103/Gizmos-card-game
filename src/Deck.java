@@ -180,6 +180,7 @@ public class Deck {
 			cards.add(r1p2_14);
 
 			ConverterCard r1p2_15 = new ConverterCard("1r11c", ImageIO.read(Deck.class.getResource("/cardImages/r1p2_15.png")));
+			r1p2_15.setConverterA("black", false);
 		}
     	catch (Exception E) {
     		System.out.println("image exception CARDS deck rank 1 - ");

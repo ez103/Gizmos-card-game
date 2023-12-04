@@ -1,4 +1,4 @@
-public class score {
+public class score implements Comparable {
     private int playern;
     private int scr;
     public score(int a, int b){
@@ -13,8 +13,8 @@ public class score {
         return scr;
     }
     @Override
-    public int compareTo(Score other) {
-        return Integer.compare(other.getScr(), this.getScr());
+    public int compareTo(Object other) {
+        return Integer.compare(((score)other).getScr(), this.getScr());
     }
 
 }
