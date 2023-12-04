@@ -50,4 +50,8 @@ public class BuildCard extends Card {
 	public int getPlayerVp() {
 		return playerVictoryPoints;
 	}
+	
+	public ArrayList<String> getBuiltColors() {
+		return builtColors;
+	}
 }

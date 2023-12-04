@@ -655,14 +655,14 @@ public class GizmosPanel extends JPanel implements MouseListener {
 			
 		}
 		
-		else if (state == 31) {
-			if (x >= 650 && x <= 770 && y >= 15 && y <= 105) {
-				for (int i = 0; i < numRandom; i++) {
-					Marble m = marbles.remove(marbles.size()-3);
-					players[turn].addMarble(m);
-				}
-			}
-		}
+//		else if (state == 31) { dont need this
+//			if (x >= 650 && x <= 770 && y >= 15 && y <= 105) {
+//				for (int i = 0; i < numRandom; i++) {
+//					Marble m = marbles.remove(marbles.size()-3);
+//					players[turn].addMarble(m);
+//				}
+//			}
+//		}
 
 		else if (state == 11) { // player chooses to do the FILE action
 			for (int i = 0; i < 4; i++) { // tier 1 cards
@@ -1005,13 +1005,19 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				}
 			}
 		}
-		if (numRandom > 0) {
-			state = 31;
+		for (int i = 0; i < numRandom; i++) {
+			players[turn].addMarble(marbles.get(marbles.size()-3));
 		}
+		repaint();
 	}
 	public void builtChain(Card c) {
-		players[turn].increasePlayerVp(c.getPlayerVp());
-		System.out.println(c.getPlayerVp());
+		for (Card b : players[turn].getCards().get("build")) {
+			for (String s: b.getBuiltColors()) {
+				if (s.equals(c.getCostColor())) {
+					players[turn].increasePlayerVp(b.getPlayerVp());
+				}
+			}
+		}
 	}
 }
 

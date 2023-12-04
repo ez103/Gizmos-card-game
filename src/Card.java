@@ -158,4 +158,11 @@ public class Card {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	public ArrayList<String> getBuiltColors() {
+		// TODO Auto-generated method stub
+		return new ArrayList<>();
+	}
+	
+	
 }

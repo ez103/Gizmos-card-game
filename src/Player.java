@@ -79,7 +79,6 @@ public class Player {
 		for(int i =0;i<con.size();i++){
 			ret = ret +con.get(i).getCardVictoryPoints();
 
-
 		}
 		return ret;
 	}

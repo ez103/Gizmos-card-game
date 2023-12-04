@@ -160,9 +160,9 @@ public class Deck {
     		r1p2_9.setConverterA("yellow", false);
     		cards.add(r1p2_9);
     		
-    		ConverterCard r1p2_10 = new ConverterCard("3u31c", ImageIO.read(Deck.class.getResource("/cardImages/r1p2_10.png")));
+    		ConverterCard r1p2_10 = new ConverterCard("3u32c", ImageIO.read(Deck.class.getResource("/cardImages/r1p2_10.png")));
     		r1p2_10.setConverterB("red");
-    		cards.add(r1p2_10);
+    		cards.add(r1p2_10);// should be tier 2
 
 			ConverterCard r1p2_11 = new ConverterCard("1y11c", ImageIO.read(Deck.class.getResource("/cardImages/r1p2_11.png")));
     		r1p2_11.setConverterA("black", false);
