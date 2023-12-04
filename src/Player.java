@@ -125,7 +125,7 @@ public class Player {
 			}
 
 		}
-		return tret>=16||three>=3;
+		return tret>16||three>=4;
 	}
 	public void addCard(Card c) {
 		belt.get(c.getCategory()).add(c);

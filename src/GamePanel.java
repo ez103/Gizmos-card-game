@@ -39,35 +39,6 @@ public class GamePanel extends JPanel{
     {
 
 
-/*g.drawImage(ep, 0, 20, 650,80,null); 
-g.drawImage(ep2, 650, 0,100,100,null); 
-g.drawImage(ep1, 0, 450, 650,80,null); 
-g.drawImage(ep2, 650, 450,100,100,null); 
-g.drawImage(ep1, 1140, 20, 650,80,null); 
-g.drawImage(ep2, 1790, 0,95,100,null); 
-g.drawImage(ep1, 1140, 450, 650,80,null); 
-g.drawImage(ep2, 1790, 450,95,100,null); 
-g.drawImage(chest, 750, 20,120,120,null); 
-g.drawImage(epy, 880, 20,50,50,null); 
-g.drawImage(epblue, 940, 20,50,50,null); 
-g.drawImage(epblack, 1000, 20,50,50,null); 
-g.drawImage(epy, 880, 80,50,50,null); 
-g.drawImage(epblue, 940, 80,50,50,null); 
-g.drawImage(epblack, 1000, 80,50,50,null); 
-g.drawImage(purp, 750, 140,90,90,null); 
-g.drawImage(blank, 850, 140,120,120,null); 
-g.drawImage(blank, 975, 140,120,120,null); 
-g.drawImage(green, 750, 280,90,90,null); 
-g.drawImage(blank, 850, 280,120,120,null); 
-g.drawImage(blank, 975, 280,120,120,null); 
-g.drawImage(blank, 905, 405,120,120,null); 
-g.drawImage(org, 750, 550,90,90,null); 
-g.drawImage(blank, 850, 550,120,120,null); 
-g.drawImage(blank, 975, 550,120,120,null); 
-g.drawImage(blank, 850, 690,120,120,null); 
-g.drawImage(blank, 975, 690,120,120,null); 
-g.drawImage(arc, 850, 820,100,60,null); 
-g.drawImage(res, 965, 820,100,60,null); */
         g.setFont(new Font("Dialog", Font.BOLD, 20));
 
         g.drawImage(back, 0, 0,1900,1000,null);

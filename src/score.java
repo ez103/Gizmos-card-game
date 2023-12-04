@@ -1,9 +1,9 @@
-public class score implements Comparable {
+public class score  {
     private int playern;
     private int scr;
     public score(int a, int b){
         playern = a;
-        scr = scr;
+        scr = b;
 
     }
     public int gN(){
@@ -12,9 +12,9 @@ public class score implements Comparable {
     public int getScr(){
         return scr;
     }
-    @Override
-    public int compareTo(Object other) {
-        return Integer.compare(((score)other).getScr(), this.getScr());
+    public String tStr(){
+        return "player ; "+playern+", scr =  "+scr;
     }
+
 
 }

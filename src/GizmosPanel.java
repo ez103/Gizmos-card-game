@@ -392,7 +392,7 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				g.setFont(new Font("Dialog", Font.BOLD, 23));
 				g.drawString("Select a card from the board to archive", 20, 935);
 			}
-			
+
 			
 			else if (state == 40) {
 				g.setColor(Color.black);
@@ -404,9 +404,14 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				g.setFont(new Font("Dialog", Font.BOLD, 23));
 				g.drawString("Select a card from archive to build", 20, 935);
 			}
-			
+			else if (state==72){
+				g.setFont(new Font("Dialog", Font.BOLD, 23));
+
+				g.drawString("Click on a tier to research", 20, 935);
+
+			}
 			else if (state == 69){ // RESEARCH panel pops up
-				
+
 				g.setColor(Color.black);
 				g.setFont(new Font("Dialog", Font.BOLD, 23));
 				g.drawString("Select a card from the research row", 20, 935);
@@ -423,6 +428,11 @@ public class GizmosPanel extends JPanel implements MouseListener {
 					ind++;
 				}
 				state = 73;
+			}
+			else if (state==73){
+				g.setColor(Color.black);
+				g.setFont(new Font("Dialog", Font.BOLD, 23));
+				g.drawString("Click anywhere", 20, 935);
 			}
 			else if(state ==74){ // these buttons, the player uses to choose to build or file after research.
 				g.setColor(Color.black);
@@ -469,24 +479,34 @@ public class GizmosPanel extends JPanel implements MouseListener {
 	}
 	public ArrayList<score> getWinner(){
 		ArrayList<Integer> tell = new ArrayList<Integer>();
-		int p1s = players[1].Vpoints();
-		int p2s = players[2].Vpoints();
-		int p3s = players[3].Vpoints();
-		int p4s = players[4].Vpoints();
+		int p1s = players[1].getTotalVictoryPoints();
+		int p2s = players[2].getTotalVictoryPoints();
+		int p3s = players[3].getTotalVictoryPoints();
+		int p4s = players[4].getTotalVictoryPoints();
 		score p1 = new score(1,p1s);
-		score p2 = new score(1,p2s);
-		score p3 = new score(1,p3s);
-		score p4 = new score(1,p4s);
+		score p2 = new score(2,p2s);
+		score p3 = new score(3,p3s);
+		score p4 = new score(4,p4s);
 
-		tell.add(p1s);
-		tell.add(p2s);
-		tell.add(p3s);
-		tell.add(p4s);
+
 		ArrayList<score> scoreList = new ArrayList<>();
 		scoreList.add(p1);
 		scoreList.add(p2);
 		scoreList.add(p3);
 		scoreList.add(p4);
+		for (int i = 0; i < scoreList.size() - 1; i++) {
+			for (int j = 0; j < scoreList.size() - i - 1; j++) {
+				if (scoreList.get(j + 1).getScr() > scoreList.get(j).getScr()) {
+					// Swap elements if they are in the wrong order
+					score temp = scoreList.get(j);
+					scoreList.set(j, scoreList.get(j + 1));
+					scoreList.set(j + 1, temp);
+				}
+			}
+		}
+		for(int i=0;i< scoreList.size();i++) {
+			System.out.println(scoreList.get(i).tStr());
+		}
 		return scoreList;
 	}
 	@Override
@@ -568,7 +588,8 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				state=69;
 
 			}
-		
+
+
 		}
 		else if(state ==73&&y>850&&y<1000){
 			for (int i = 0; i<players[turn].getResearchLimit(); i++){
