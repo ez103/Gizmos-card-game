@@ -433,6 +433,12 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				}
 				state = 73;
 			}
+			else if (state == 70) {
+				g.setColor(Color.black);
+				g.setFont(new Font("Dialog", Font.BOLD, 23));
+				g.drawString("Click anywhere to continue", 20, 935);
+			}
+				
 			else if (state==73){
 				g.setColor(Color.black);
 				g.setFont(new Font("Dialog", Font.BOLD, 23));
@@ -595,7 +601,7 @@ public class GizmosPanel extends JPanel implements MouseListener {
 
 
 		}
-		else if(state ==73&&y>850&&y<1000){
+		else if(state ==73 && x > 800 &&y>850&&y<1000){
 			for (int i = 0; i<players[turn].getResearchLimit(); i++){
 				int erm =i * 100 + 800;
 				if(x> erm&&x<erm+100){
