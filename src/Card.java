@@ -164,5 +164,14 @@ public class Card {
 		return new ArrayList<>();
 	}
 	
+	public int getChooseMarble() {
+    	return 0;
+    }
+    public int getRandomMarble() {
+    	return 0;
+    }
+    public int getPvpFromFile() {
+    	return 0;
+    }
 	
 }

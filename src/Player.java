@@ -36,7 +36,9 @@ public class Player {
 		
 		archive = new ArrayList<>();
 		try {
-			belt.get("file").add(new FileCard("0x00f", ImageIO.read(Player.class.getResource("/cardImages/defaultCard.png"))));
+			FileCard fc = new FileCard("0x00f", ImageIO.read(Player.class.getResource("/cardImages/defaultCard.png")));
+			fc.setFileCard(0,  1,  0);
+			belt.get("file").add(fc);
 		}
 		catch(Exception E) {
 			System.out.println("default arhcive card image exception");
@@ -73,7 +75,6 @@ public class Player {
 		}
 		for(int i =0;i<pi.size();i++){
 			ret = ret +pi.get(i).getCardVictoryPoints();
-
 
 		}
 		for(int i =0;i<con.size();i++){

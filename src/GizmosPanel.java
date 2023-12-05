@@ -192,7 +192,7 @@ public class GizmosPanel extends JPanel implements MouseListener {
 			}
 			g.drawImage(energyRing, 870, 400,175,175,null);
 			int joe = 1;
-			g.drawString("Player " + turn + ":     " + "Bonus Victory Point Tokens: " + players[turn].getPlayerVp(),10,440); // Current player. CARDS
+			g.drawString("Player " + turn + ":     " + "Bonus VP: " + players[turn].getPlayerVp(),10,440); // Current player. CARDS
 			for (Card c : players[turn].getCards().get("upgrade")) {
 				g.drawImage(c.getImage(), 20, joe * 35 + 535, 130, 130, null);
 				joe++;
@@ -236,12 +236,13 @@ public class GizmosPanel extends JPanel implements MouseListener {
 
 			int turn2 = 0; // the player whos turn is direcly after; one turn away
 			if (turn%4 == 3) {
-				g.drawString("Player " + 4 + ": " ,1075,25);
+				g.drawString("Player " + 4 + ":     # Marbles: " + players[4].getMarbles().size() + "   Bonus VP: " + players[4].getPlayerVp() ,1075,25);
 				turn2 = 4;
 			}
 			else {
-				g.drawString("Player " + ((turn+1)%4) + ": " ,1075,25);
 				turn2 = ((turn+1)%4);
+				g.drawString("Player " + (turn2) + ":     # Marbles: " + players[turn2].getMarbles().size() + "   Bonus VP: " + players[turn2].getPlayerVp() ,1075,25);
+				
 			}
 			if (turn2 == 1) {
 				g.drawImage(brownBelt, 1075, 40, 800,80,null);
@@ -252,12 +253,13 @@ public class GizmosPanel extends JPanel implements MouseListener {
 
 			int turn3 = 0; // two turns away
 			if (turn%4 == 2) {
-				g.drawString("Player " + 4 + ": " ,1075,325);
+				g.drawString("Player " + 4 + ":     # Marbles: " + players[4].getMarbles().size() + "   Bonus VP: " + players[4].getPlayerVp() ,1075,325);
 				turn3 = 4;
 			}
 			else {
-				g.drawString("Player " + ((turn+2)%4) + ": " ,1075,325);
 				turn3 = (turn+2)%4;
+				g.drawString("Player " + (turn3) + ":     # Marbles: " + players[turn3].getMarbles().size() + "   Bonus VP: " + players[turn3].getPlayerVp() ,1075,325);
+				
 			}
 			if (turn3 == 1) {
 				g.drawImage(brownBelt, 1075, 340, 800,80,null);
@@ -268,12 +270,14 @@ public class GizmosPanel extends JPanel implements MouseListener {
 
 			int turn4 = 0; // three turns away
 			if (turn%4 == 1) {
-				g.drawString("Player " + 4 + ": " ,1075,625);
 				turn4 = 4;
+				g.drawString("Player " + 4 + ":     # Marbles: " + players[4].getMarbles().size() + "     Bonus VP: " + players[4].getPlayerVp() ,1075,625);
+				
 			}
 			else {
-				g.drawString("Player " + ((turn+3)%4) + ": " ,1075,625);
 				turn4 = (turn+3)%4;
+				g.drawString("Player " + turn4 + ":     # Marbles: " + players[turn4].getMarbles().size() + "     Bonus VP: " + players[turn4].getPlayerVp() ,1075,625);
+				
 			}
 			if (turn4 == 1) {
 				g.drawImage(brownBelt, 1075, 640, 800,80,null);
@@ -690,8 +694,16 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				Card c = board.get(1).get(i);
 				if (x >= c.getX() && x <= c.getX() + 130 && y >= c.getY() && y <= c.getY() + 130) {
 					boolean boob = players[turn].archiveCard(c);
+					
+					
+					
 					if (boob) { // archived succesfully
 						board.get(1).remove(i); // remove the card from the board because it is now in player archive
+						
+						if (canPickAfterArchive(c)) {
+							state = 21;
+						}
+						
 						state = 1;
 						turn++;
 						if (turn == 5) {
@@ -1014,8 +1026,23 @@ public class GizmosPanel extends JPanel implements MouseListener {
 		}
 	}
 	
-	public void fileChain(Card c) {
+	public boolean canPickAfterArchive(Card c) {
 		
+		boolean boob = false;
+		for (Card f : players[turn].getCards().get("file")) {
+			players[turn].increasePlayerVp(f.getPvpFromFile());
+			if (f.getChooseMarble() > 0) {
+				boob = true;
+			}
+			
+			int n = f.getRandomMarble();
+			for (int i = 0; i < n; i++) {
+				System.out.println("cpaa");
+				players[turn].addMarble(marbles.remove(marbles.size()-3));
+			}
+		}
+		repaint();
+		return boob;
 	}
 	public void pickChain(String color) {
 		numRandom = 0;

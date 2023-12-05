@@ -19,5 +19,13 @@ public class FileCard extends Card {
         this.playerVictoryPoints = randomMarble;
     }
 
-
+    public int getChooseMarble() {
+    	return chooseMarble;
+    }
+    public int getRandomMarble() {
+    	return randomMarble;
+    }
+    public int getPvpFromFile() {
+    	return playerVictoryPoints;
+    }
 }
