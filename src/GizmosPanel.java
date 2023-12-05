@@ -622,6 +622,11 @@ public class GizmosPanel extends JPanel implements MouseListener {
 			toBuildIndex = clickCar;
 
 			if (pay()) {
+				if (cardToBuild.getCategory().equals("upgrade")) {
+					players[turn].increaseFileLimit(cardToBuild.getFileIncrease());
+					players[turn].increaseMarbleLimit(cardToBuild.getMarbleIncrease());
+					players[turn].increaseResearchLimit(cardToBuild.getResearchIncrease());
+				}
 				state = 1;
 				turn++;
 				if (turn == 5) {
@@ -644,11 +649,16 @@ public class GizmosPanel extends JPanel implements MouseListener {
 			
 			boolean success = players[turn].archiveCard(chosen);
 			if (success) { // added to archive successfully. Now we can go to the next player.
-				turn++;
-				if (turn == 5) {
-					turn = 1;
+				if (canPickAfterArchive(chosen)) {
+					state = 21;
 				}
-				state = 1;
+				else {
+					turn++;
+					if (turn == 5) {
+						turn = 1;
+					}
+					state = 1;
+				}
 			}
 			else { // OVER FILE LIMIT. maybe add an error message later.
 				state = 1; // player must choose a card again, then choose whether to
@@ -704,10 +714,12 @@ public class GizmosPanel extends JPanel implements MouseListener {
 							state = 21;
 						}
 						
-						state = 1;
-						turn++;
-						if (turn == 5) {
-							turn = 1;
+						else {
+							state = 1;
+							turn++;
+							if (turn == 5) {
+								turn = 1;
+							}
 						}
 						
 					}
@@ -1006,7 +1018,7 @@ public class GizmosPanel extends JPanel implements MouseListener {
 			
 			if (paid < cardToBuild.getCost()) {
 				for (int i = players[turn].getMarbles().size()-1; i >= 0; i--) {
-					players[turn].getMarbles().remove(i);
+					marbles.add(players[turn].getMarbles().remove(i));
 					paid++;
 					if (paid == cardToBuild.getCost()) {
 						break;
@@ -1038,7 +1050,9 @@ public class GizmosPanel extends JPanel implements MouseListener {
 			
 			int n = f.getRandomMarble();
 			for (int i = 0; i < n; i++) {
-				players[turn].addMarble(marbles.remove(marbles.size()-3));
+				if (players[turn].getMarbles().size() < players[turn].getMarbleLimit()) {
+					players[turn].addMarble(marbles.remove(marbles.size()-3));
+				}
 			}
 		}
 		repaint();
@@ -1054,7 +1068,9 @@ public class GizmosPanel extends JPanel implements MouseListener {
 			}
 		}
 		for (int i = 0; i < numRandom; i++) {
-			players[turn].addMarble(marbles.get(marbles.size()-3));
+			if (players[turn].getMarbles().size() < players[turn].getMarbleLimit()) {
+				players[turn].addMarble(marbles.get(marbles.size()-3));
+			}
 		}
 		repaint();
 	}
