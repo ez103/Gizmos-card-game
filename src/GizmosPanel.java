@@ -1030,6 +1030,7 @@ public class GizmosPanel extends JPanel implements MouseListener {
 		
 		boolean boob = false;
 		for (Card f : players[turn].getCards().get("file")) {
+			System.out.println(f.getPvpFromFile());
 			players[turn].increasePlayerVp(f.getPvpFromFile());
 			if (f.getChooseMarble() > 0) {
 				boob = true;
@@ -1037,7 +1038,6 @@ public class GizmosPanel extends JPanel implements MouseListener {
 			
 			int n = f.getRandomMarble();
 			for (int i = 0; i < n; i++) {
-				System.out.println("cpaa");
 				players[turn].addMarble(marbles.remove(marbles.size()-3));
 			}
 		}

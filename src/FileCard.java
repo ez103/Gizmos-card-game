@@ -16,7 +16,7 @@ public class FileCard extends Card {
     public void setFileCard(int chooseMarble, int randomMarble, int playerVictoryPoints) {
         this.chooseMarble = chooseMarble;
         this.randomMarble = randomMarble;
-        this.playerVictoryPoints = randomMarble;
+        this.playerVictoryPoints = playerVictoryPoints;
     }
 
     public int getChooseMarble() {
