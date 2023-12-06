@@ -36,6 +36,8 @@ public class GizmosPanel extends JPanel implements MouseListener {
 	private BufferedImage energyRing, yellowMarble, redMarble, blueMarble, blackMarble, chest;
 	private BufferedImage tier3Cover, tier2Cover, tier1Cover, blank, archiveButton, researchButton, background;
 	
+	private BufferedImage ernge;
+	
 	private HashMap<Integer, ArrayList<Card>> board;
 	
 	private ArrayList<Marble> marbles;
@@ -65,7 +67,8 @@ public class GizmosPanel extends JPanel implements MouseListener {
 			//archiveButton = ImageIO.read(GizmosPanel.class.getResource("/images/arch.png"));
 			//researchButton = ImageIO.read(GizmosPanel.class.getResource("/images/research.png"));
 			background = ImageIO.read(GizmosPanel.class.getResource("/images/back.jpg"));
-
+			
+			ernge = ImageIO.read(GizmosPanel.class.getResource("/images/orangeRectangle.png"));
     	}
     	catch (Exception E){
         	System.err.println("erre");
@@ -136,7 +139,8 @@ public class GizmosPanel extends JPanel implements MouseListener {
 		if(!startScreen){
 			if(checkT()){
 			g.drawImage(background, 0, 0,1900,1000,null);
-
+			
+			g.drawImage(ernge, 0, 900, 420, 60, null);
 			
 			
 			//for (players.turn[].getCards().get(""))
@@ -286,11 +290,28 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				g.drawImage(greyBelt, 1075, 640, 800,80,null);
 			}
 
-
+			for (int i = 0; i < 3; i++) { // DRAWING MARBLES OF THE OTHER 3 PLAYERS.
+				Player boobies;
+				if (i == 0) {
+					boobies = players[turn2];
+				}
+				else if (i == 1) {
+					boobies = players[turn3];
+				}
+				else {
+					boobies = players[turn4];
+				}
+				
+				int ind = 0;
+				for (Marble m : boobies.getMarbles()) {
+					g.drawImage(m.getImage(), 1480 + 35 * ind, 7 + 300 * i, 25, 25, null);
+					ind++;
+				}
+			}
 
 
 			// DRAW current players MARBLEs in their ENGERY RING in a 4x4 square
-			for (int i = 0; i < 3; i++) { // DRAWING CARDS OF THE OTHER 3 PLAYERS. very rough right now, need to change later
+			for (int i = 0; i < 3; i++) { // DRAWING CARDS OF THE OTHER 3 PLAYERS. 
 				Player boobies;
 				if (i == 0) {
 					boobies = players[turn2];
