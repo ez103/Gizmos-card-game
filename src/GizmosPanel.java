@@ -355,6 +355,26 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				}
 			}
 			
+			for (int i = 0; i < 3; i++) { // DRAWING MARBLES OF THE OTHER 3 PLAYERS.
+				Player boobies;
+				if (i == 0) {
+					boobies = players[turn2];
+				}
+				else if (i == 1) {
+					boobies = players[turn3];
+				}
+				else {
+					boobies = players[turn4];
+				}
+				
+				int ind = 0;
+				g.drawString("Archive:", 1780, 135 + 300*i);
+				for (Card f : boobies.getArchive()) {
+					g.drawImage(f.getImage(), 1780, 138 + 300 * i + ind * 35, 70, 70, null);
+					ind++;
+				}
+			}
+			
 			
 			// drawing a running LEADERBOARD
 			g.setColor(new Color(50, 205, 50));
@@ -736,7 +756,7 @@ public class GizmosPanel extends JPanel implements MouseListener {
 					
 					
 					
-					if (boob) { // archived succesfully
+					if (boob) { // archived successfully
 						board.get(1).remove(i); // remove the card from the board because it is now in player archive
 						
 						if (canPickAfterArchive(c)) {
