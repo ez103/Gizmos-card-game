@@ -431,12 +431,6 @@ public class GizmosPanel extends JPanel implements MouseListener {
 					g.drawImage(resc.getImage(),u,845,100,120,null);
 					ind++;
 				}
-				state = 73;
-			}
-			else if (state == 70) {
-				g.setColor(Color.black);
-				g.setFont(new Font("Dialog", Font.BOLD, 23));
-				g.drawString("Click anywhere to continue", 20, 935);
 			}
 				
 			else if (state==73){
@@ -444,7 +438,7 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				g.setFont(new Font("Dialog", Font.BOLD, 23));
 				g.drawString("Click anywhere", 20, 935);
 			}
-			else if(state ==74){ // these buttons, the player uses to choose to build or file after research.
+			else if(state ==70){ // these buttons, the player uses to choose to build or file after research.
 				g.setColor(Color.black);
 				g.setFont(new Font("Dialog", Font.BOLD, 23));
 				g.drawString("Click on a blue button", 20, 935);
@@ -579,8 +573,15 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				tempcard.remove(0);
 			}
 			board.put(restier,tempcard);
-			state = 74;
-
+			//state = 74;
+			
+			if(x>641&&x<730&&y>420&&y<470){
+				state = 75;
+				//fuck bitch then build
+			}
+			else if(x>348&&x<440&&y>420&&y<470){
+				state = 76;
+			}
 		}
 		
 		else if(state==72){ // state=72 means player clicks on one of the tiers to choose which tier to research
@@ -601,14 +602,15 @@ public class GizmosPanel extends JPanel implements MouseListener {
 
 
 		}
-		else if(state ==73 && x > 800 &&y>850&&y<1000){
+		else if(state ==69){
 			for (int i = 0; i<players[turn].getResearchLimit(); i++){
 				int erm =i * 100 + 800;
-				if(x> erm&&x<erm+100){
+				if(x> erm&&x<erm+100 && y >= 845){
 					clickCar=i;
+					state =70;
+					break;
 				}
 			}
-			state =70;
 		}
 		
 		else if(state ==74){
