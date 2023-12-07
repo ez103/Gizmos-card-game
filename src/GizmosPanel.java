@@ -550,7 +550,7 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				g.drawString("4th : player "+p4,200,500);
 
 
-
+				
 			}
 		}
 
