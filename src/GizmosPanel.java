@@ -322,7 +322,8 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				else {
 					boobies = players[turn4];
 				}
-
+				
+				g.setColor(Color.black);
 				g.drawString("Player " + turn + ": ",10,440); // side player
 				int len = 1;
 				for (Card c : boobies.getCards().get("upgrade")) {
@@ -368,6 +369,7 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				}
 				
 				int ind = 0;
+				g.setColor(Color.black);
 				g.drawString("Archive:", 1780, 135 + 300*i);
 				for (Card f : boobies.getArchive()) {
 					g.drawImage(f.getImage(), 1780, 138 + 300 * i + ind * 35, 70, 70, null);
@@ -414,8 +416,13 @@ public class GizmosPanel extends JPanel implements MouseListener {
 			}
 			else if (state == 21) {
 				g.setColor(Color.black);
-				g.setFont(new Font("Dialog", Font.BOLD, 23));
-				g.drawString("Pick 1 marble from the 6 shown marbles", 20, 935);
+				g.setFont(new Font("Dialog", Font.BOLD, 21));
+				g.drawString("Pick 1 marble from the 6 shown marbles", 10, 935);
+				g.setColor(Color.yellow);
+				g.drawRect(773, 30, 280, 51);
+				g.drawRect(772, 29, 282, 53);
+				g.drawRect(771, 28, 284, 55);
+				g.drawRect(770, 27, 286, 57);
 			}
 			else if(state==10){
 				g.setColor(Color.black);
@@ -436,24 +443,48 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				g.setColor(Color.black);
 				g.setFont(new Font("Dialog", Font.BOLD, 23));
 				g.drawString("Select a card from the board to archive", 20, 935);
+				
+				g.setColor(Color.yellow);
+				g.drawRect(155,5,560,420);
+				g.drawRect(154, 4, 562, 422);
+				g.drawRect(153, 3, 564, 424);
+				g.drawRect(152, 2, 566, 426);
 			}
 
 			
 			else if (state == 40) {
 				g.setColor(Color.black);
 				g.setFont(new Font("Dialog", Font.BOLD, 23));
-				g.drawString("Select a card from the board to build", 20, 935);
+				g.drawString("Select a card from the board to build", 11, 935);
+				
+				g.setColor(Color.yellow);
+				g.drawRect(155,5,560,420);
+				g.drawRect(154, 4, 562, 422);
+				g.drawRect(153, 3, 564, 424);
+				g.drawRect(152, 2, 566, 426);
 			}
+			
 			else if (state == 41) {
 				g.setColor(Color.black);
 				g.setFont(new Font("Dialog", Font.BOLD, 23));
 				g.drawString("Select a card from archive to build", 20, 935);
+				
+				g.setColor(Color.yellow);
+				g.drawRect(786,607,270,350);
+				g.drawRect(785, 606, 272, 352);
+				g.drawRect(784, 605, 274, 354);
+				g.drawRect(783, 604, 276, 356);
 			}
+			
 			else if (state==72){
 				g.setFont(new Font("Dialog", Font.BOLD, 23));
 
 				g.drawString("Click on a tier to research", 20, 935);
-
+				g.setColor(Color.yellow);
+				g.drawRect(4, 4, 139, 416);
+				g.drawRect(3, 3, 141, 418);
+				g.drawRect(2, 2, 143, 420);
+				g.drawRect(1, 1, 145, 422);
 			}
 			else if (state == 69){ // RESEARCH panel pops up
 
@@ -463,22 +494,24 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				
 				g.setColor(Color.GRAY);
 				g.fillRect(800,850,1100,150);
+				g.setColor(Color.yellow);
+				g.drawRect(800,850,1079,107);
+				g.drawRect(799, 849, 1081, 109);
+				g.drawRect(798, 848, 1083, 111);
+				g.drawRect(797, 847, 1085, 113);
+				
 				tempcard = board.get(restier);
 
 				int ind = 5 - restier; //  index of card arraylist that player sees
 				for (int i = 0; i<players[turn].getResearchLimit(); i++){
 					Card resc = tempcard.get(ind);
 					int u = i * 100 + 800;
-					g.drawImage(resc.getImage(),u,845,100,120,null);
+					g.drawImage(resc.getImage(),u,850,100,108,null);
 					ind++;
 				}
 			}
 				
-			else if (state==73){
-				g.setColor(Color.black);
-				g.setFont(new Font("Dialog", Font.BOLD, 23));
-				g.drawString("Click anywhere", 20, 935);
-			}
+			
 			else if(state ==70){ // these buttons, the player uses to choose to build or file after research.
 				g.setColor(Color.black);
 				g.setFont(new Font("Dialog", Font.BOLD, 23));
@@ -585,25 +618,7 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				state = 72;
 			}
 		}
-//		else if (state ==40){
-//			//choose to build from board or arhive
-////			g.fillOval(780, 300, 120, 49);
-////			g.fillOval(915, 300, 120, 49);
-//			if(x>780&&x<900&&y>300&&y<350){
-//				state =11;
-//			}
-//			else if(x>915&&x<930&&y>300&&y<250){
-//				if(players[turn].getArchive().size()>0){
-//					state =101;
-//				}
-//			}
-//		}
-		// g.drawImage(tier3Cover, 10, 10,130,130,null); // drawing the cards on the board
-
-		// 				g.drawImage(tier2Cover, 10, 150,130,130,null);
-
-		// 	g.drawImage(tier1Cover, 10, 290,130,130,null);
-
+		
 		else if(state==70){ // player click on card, puts back into back of arraylist
 			chosen =tempcard.get(5 - restier + clickCar); // need to check this if there is a bug
 
@@ -614,14 +629,58 @@ public class GizmosPanel extends JPanel implements MouseListener {
 				tempcard.remove(0);
 			}
 			board.put(restier,tempcard);
-			//state = 74;
+			
 			
 			if(x>641&&x<730&&y>420&&y<470){
-				state = 75;
 				//fuck bitch then build
+				cardToBuild = chosen; // these 3 PIVs are reset efvery time state = 40
+				toBuildTier = chosen.getTier();
+				toBuildIndex = clickCar;
+
+				if (pay()) {
+					if (cardToBuild.getCategory().equals("upgrade")) {
+						players[turn].increaseFileLimit(cardToBuild.getFileIncrease());
+						players[turn].increaseMarbleLimit(cardToBuild.getMarbleIncrease());
+						players[turn].increaseResearchLimit(cardToBuild.getResearchIncrease());
+					}
+					
+					if (canPickAfterBuild(cardToBuild)) {
+						state = 21;
+					}
+					else {
+						state = 1;
+						turn++;
+						if (turn == 5) {
+							turn = 1;
+						}
+					}
+				}
+				else {
+					state = 1;
+				}
+
+				cardToBuild = null;
+				toBuildTier = -1;
+				toBuildIndex = -1;
 			}
 			else if(x>348&&x<440&&y>420&&y<470){
-				state = 76;
+				// player chooses to archive from research
+				boolean success = players[turn].archiveCard(chosen);
+				if (success) { // added to archive successfully. Now we can go to the next player.
+					if (canPickAfterArchive(chosen)) {
+						state = 21;
+					}
+					else {
+						turn++;
+						if (turn == 5) {
+							turn = 1;
+						}
+						state = 1;
+					}
+				}
+				else { // OVER FILE LIMIT. maybe add an error message later.
+					state = 1; // player must choose a card again, then choose whether to
+				}
 			}
 		}
 		
@@ -654,65 +713,7 @@ public class GizmosPanel extends JPanel implements MouseListener {
 			}
 		}
 		
-		else if(state ==74){
-
-			if(x>641&&x<730&&y>420&&y<470){
-				state = 75;
-				//fuck bitch then build
-			}
-			else if(x>348&&x<440&&y>420&&y<470){
-				state = 76;
-			}
-		}
 		
-		else if (state ==75){
-			cardToBuild = chosen; // these 3 PIVs are reset efvery time state = 40
-			toBuildTier = chosen.getTier();
-			toBuildIndex = clickCar;
-
-			if (pay()) {
-				if (cardToBuild.getCategory().equals("upgrade")) {
-					players[turn].increaseFileLimit(cardToBuild.getFileIncrease());
-					players[turn].increaseMarbleLimit(cardToBuild.getMarbleIncrease());
-					players[turn].increaseResearchLimit(cardToBuild.getResearchIncrease());
-				}
-				state = 1;
-				turn++;
-				if (turn == 5) {
-					turn = 1;
-				}
-			}
-			else {
-				state = 1;
-			}
-
-			cardToBuild = null;
-			toBuildTier = -1;
-			toBuildIndex = -1;
-		}
-		
-		else if(state==76){
-//			if(players[turn].archiveCard(chosen)){
-//				players[turn].addCard(chosen);
-//			} don't need this, addCard adds to belt. archiveCard adds to the player archive when it is called.
-			
-			boolean success = players[turn].archiveCard(chosen);
-			if (success) { // added to archive successfully. Now we can go to the next player.
-				if (canPickAfterArchive(chosen)) {
-					state = 21;
-				}
-				else {
-					turn++;
-					if (turn == 5) {
-						turn = 1;
-					}
-					state = 1;
-				}
-			}
-			else { // OVER FILE LIMIT. maybe add an error message later.
-				state = 1; // player must choose a card again, then choose whether to
-			}
-		}
 		
 		else if (state == 21) {
 			if (players[turn].getMarbles().size() < players[turn].getMarbleLimit()) {
@@ -784,10 +785,17 @@ public class GizmosPanel extends JPanel implements MouseListener {
 					boolean boob = players[turn].archiveCard(c);
 					if (boob) { // archived succesfully
 						board.get(2).remove(i); // remove the card from the board because it is now in player archive
-						state = 1;
-						turn++;
-						if (turn == 5) {
-							turn = 1;
+						
+						if (canPickAfterArchive(c)) {
+							state = 21;
+						}
+						
+						else {
+							state = 1;
+							turn++;
+							if (turn == 5) {
+								turn = 1;
+							}
 						}
 					}
 					else {
@@ -802,10 +810,16 @@ public class GizmosPanel extends JPanel implements MouseListener {
 					boolean boob = players[turn].archiveCard(c);
 					if (boob) { // archived succesfully
 						board.get(3).remove(i); // remove the card from the board because it is now in player archive
-						state = 1;
-						turn++;
-						if (turn == 5) {
-							turn = 1;
+						
+						if (canPickAfterArchive(c)) {
+							state = 21;
+						}
+						else {
+							state = 1;
+							turn++;
+							if (turn == 5) {
+								turn = 1;
+							}
 						}
 					}
 					else {
@@ -869,10 +883,16 @@ public class GizmosPanel extends JPanel implements MouseListener {
 						players[turn].increaseMarbleLimit(cardToBuild.getMarbleIncrease());
 						players[turn].increaseResearchLimit(cardToBuild.getResearchIncrease());
 					}
-					state = 1;
-					turn++;
-					if (turn == 5) {
-						turn = 1;
+					
+					if (canPickAfterBuild(cardToBuild)) {
+						state = 21;
+					}
+					else {
+						state = 1;
+						turn++;
+						if (turn == 5) {
+							turn = 1;
+						}
 					}
 				}
 				else { // cannot pay, try another action
@@ -904,10 +924,15 @@ public class GizmosPanel extends JPanel implements MouseListener {
 						players[turn].increaseResearchLimit(cardToBuild.getResearchIncrease());
 					}
 					
-					state = 1;
-					turn++;
-					if (turn == 5) {
-						turn = 1;
+					if (canPickAfterBuild(cardToBuild)) {
+						state = 21;
+					}
+					else {
+						state = 1;
+						turn++;
+						if (turn == 5) {
+							turn = 1;
+						}
 					}
 				}
 				else { // cannot pay, try another action
@@ -1093,6 +1118,7 @@ public class GizmosPanel extends JPanel implements MouseListener {
 		for (Card f : players[turn].getCards().get("file")) {
 			System.out.println(f.getPvpFromFile());
 			players[turn].increasePlayerVp(f.getPvpFromFile());
+			
 			if (f.getChooseMarble() > 0) {
 				boob = true;
 			}
@@ -1103,10 +1129,27 @@ public class GizmosPanel extends JPanel implements MouseListener {
 					players[turn].addMarble(marbles.remove(marbles.size()-3));
 				}
 			}
+			
+			
 		}
 		repaint();
 		return boob;
 	}
+	
+	public boolean canPickAfterBuild(Card c) {
+		boolean boob = false;
+		for (Card b : players[turn].getCards().get("build")) {
+			for (String s : b.getBuiltColors()) {
+				if (s.equals(c.getCostColor()) && b.getChooseMarbleB() > 0) {
+					boob = true;
+					System.out.println("boob = true");
+				}
+			}
+		}
+		repaint();
+		return boob;
+	}
+	
 	public void pickChain(String color) {
 		numRandom = 0;
 		for (Card p : players[turn].getCards().get("pick")) {

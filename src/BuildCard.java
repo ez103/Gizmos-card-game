@@ -54,4 +54,8 @@ public class BuildCard extends Card {
 	public ArrayList<String> getBuiltColors() {
 		return builtColors;
 	}
+	
+	public int getChooseMarbleB() {
+		return chooseMarble;
+	}
 }

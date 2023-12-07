@@ -167,6 +167,9 @@ public class Card {
 	public int getChooseMarble() {
     	return 0;
     }
+	public int getChooseMarbleB() {
+		return 0;
+	}
     public int getRandomMarble() {
     	return 0;
     }
