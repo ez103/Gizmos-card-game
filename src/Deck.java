@@ -204,7 +204,7 @@ public class Deck {
 			cards.add(r1p3_2);
 
 			UpgradeCard	r1p3_3 = new UpgradeCard("1y11u", ImageIO.read(Deck.class.getResource("/cardImages/r1p3_3.png")));
-			r1p3_1.setUpgradeCard(1, 0, 1, "", "", "");
+			r1p3_3.setUpgradeCard(1, 0, 1, "", "", "");
 			cards.add(r1p3_3);
 
 			UpgradeCard r1p3_4 = new UpgradeCard("1r11u", ImageIO.read(Deck.class.getResource("/cardImages/r1p3_4.png")));
@@ -405,16 +405,16 @@ public class Deck {
 			r2p2_9.addBuiltColor("blue");
 			cards.add(r2p2_9);
 
-				BuildCard r2p2_10 = new BuildCard("2u22b", ImageIO.read(Deck.class.getResource("/cardImages/r2p2_10.png")));
+			BuildCard r2p2_10 = new BuildCard("2u22b", ImageIO.read(Deck.class.getResource("/cardImages/r2p2_10.png")));
 			r2p2_10.setBuildCard(new ArrayList<String>(),false,0,0,1,"");
-			r2p2_9.addBuiltColor("red");
-			r2p2_9.addBuiltColor("yellow");
+			r2p2_10.addBuiltColor("red");
+			r2p2_10.addBuiltColor("yellow");
 			cards.add(r2p2_10);
 
 			BuildCard r2p2_11 = new BuildCard("2y22b", ImageIO.read(Deck.class.getResource("/cardImages/r2p2_11.png")));
-			r2p2_10.setBuildCard(new ArrayList<String>(),false,0,0,1,"");
-			r2p2_9.addBuiltColor("red");
-			r2p2_9.addBuiltColor("black");
+			r2p2_11.setBuildCard(new ArrayList<String>(),false,0,0,1,"");
+			r2p2_11.addBuiltColor("red");
+			r2p2_11.addBuiltColor("black");
 			cards.add(r2p2_11);
 
 			BuildCard r2p2_12 = new BuildCard("2r22b", ImageIO.read(Deck.class.getResource("/cardImages/r2p2_12.png")));
